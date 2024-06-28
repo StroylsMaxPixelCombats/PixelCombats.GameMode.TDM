@@ -169,10 +169,6 @@ function SetBuildMode()
 	inventory.Melee.Value = true;
 	inventory.Explosive.Value = false;
 	inventory.Build.Value = true;
-	// Разрешение, на урон
-	Damage.GetContext().DamageOut.Value = true;
-	// Разрешение на спавн 
-	Spawns.Spawn();
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().enable = true;
