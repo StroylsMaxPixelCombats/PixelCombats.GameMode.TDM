@@ -164,11 +164,13 @@ function SetBuildMode()
 	stateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "Hint/BuildBase";
 	var inventory = Inventory.GetContext();
-	inventory.Main.Value = true;
-	inventory.Secondary.Value = true;
+	inventory.Main.Value = false;
+	inventory.Secondary.Value = false;
 	inventory.Melee.Value = true;
-	inventory.Explosive.Value = true;
+	inventory.Explosive.Value = false;
 	inventory.Build.Value = true;
+	// Разрешение, на урон
+	Damage.GetContext().DamageOut.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().enable = true;
