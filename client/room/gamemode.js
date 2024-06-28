@@ -14,17 +14,17 @@ var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 
-// Постоянные переменны
+// Постоянные, переменны
 var mainTimer = Timers.GetContext().Get("Main");
 var stateProp = Properties.GetContext().Get("State");
 
-// Применяем параметры создания комнаты
+// Применяем параметры создания, комнаты
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 Map.Rotation = GameMode.Parameters.GetBool("MapRotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 
-// Блок игрока всегда усилен
+// Блок игрока всегда, усилен
 BreackGraph.PlayerBlockBoost = true;
 
 // Параметры игры
@@ -41,11 +41,11 @@ RedTeam.Spawns.SpawnPointsGroups.Add(2);
 BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
-// Задаём макс смертей команд
+// Задаём макс смертей, команд
 var maxDeaths = Players.MaxCount * 5;
 Teams.Get("Red").Properties.Get("Deaths").Value = maxDeaths;
 Teams.Get("Blue").Properties.Get("Deaths").Value = maxDeaths;
-// Задаём что выводить в лидербордах
+// Задаём что выводить, в лидербордах
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
@@ -73,25 +73,25 @@ LeaderBoard.TeamLeaderBoardValue = {
 	DisplayName: "Statistics\Deaths",
 	ShortDisplayName: "Statistics\Deaths"
 };
-// Вес команды в лидерборде
+// Вес команды, в лидерборде
 LeaderBoard.TeamWeightGetter.Set(function(team) {
 	return team.Properties.Get("Deaths").Value;
 });
-// Вес игрока в лидерборде
+// Вес игрока, в лидерборде
 LeaderBoard.PlayersWeightGetter.Set(function(player) {
 	return player.Properties.Get("Kills").Value;
 });
 
-// Задаём что выводить вверху
+// Задаём, что выводить вверху
 Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
-// Разрешаем вход в команды по запросу
+// Разрешаем вход в команды, по запросу
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);});
-// Спавн по входу в команду
+// Спавн, по входу в команду
 Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()});
 
-// Делаем игроков неуязвимыми после спавна
+// Делаем игроков неуязвимыми, после спавна
 var immortalityTimerName="immortality";
 Spawns.GetContext().OnSpawn.Add(function(player){
 	Player.Properties.Immortality.Value=true;
@@ -102,27 +102,27 @@ Timers.OnPlayerTimer.Add(function(timer){
 	timer.Player.Properties.Immortality.Value=false;
 });
 
-// После каждой смерти игрока отнимаем одну смерть в команде
+// После каждой смерти игрока, отнимаем одну смерть в команде
 Properties.OnPlayerProperty.Add(function(context, value) {
 	if (value.Name !== "Deaths") return;
 	if (context.Player.Team == null) return;
 	context.Player.Team.Properties.Get("Deaths").Value--;
 });
-// Если в команде количество смертей занулилось то завершаем игру
+// Если в команде количество смертей занулилось, то завершаем игру
 Properties.OnTeamProperty.Add(function(context, value) {
 	if (value.Name !== "Deaths") return;
 	if (value.Value <= 0) SetEndOfMatchMode();
 });
 
-// Счётчик спавнов
+// Счётчик, спавнов
 Spawns.OnSpawn.Add(function(player) {
 	++player.Properties.Spawns.Value;
 });
-// Счётчик смертей
+// Счётчик, смертей
 Damage.OnDeath.Add(function(player) {
 	++player.Properties.Deaths.Value;
 });
-// Счётчик убийств
+// Счётчик, убийств
 Damage.OnKill.Add(function(player, killed) {
 	if (killed.Team != null && killed.Team != player.Team) {
 		++player.Properties.Kills.Value;
@@ -130,7 +130,7 @@ Damage.OnKill.Add(function(player, killed) {
 	}
 });
 
-// Настройка переключения режимов
+// Настройка переключения, режимов
 mainTimer.OnTimer.Add(function() {
 	switch (stateProp.Value) {
 	case WaitingStateValue:
@@ -148,7 +148,7 @@ mainTimer.OnTimer.Add(function() {
 	}
 });
 
-// Задаём первое игровое состояние
+// Задаём первое игровое, состояние
 SetWaitingMode();
 
 // Состояние игры
