@@ -31,14 +31,14 @@ Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Создаём команды
-Teams.Add("Blue", "Teams/Blue", { b: 1 });
-Teams.Add("Red", "Teams/Red", { r: 1 });
-var blueTeam = Teams.Get("Blue");
-var redTeam = Teams.Get("Red");
-blueTeam.Spawns.SpawnPointsGroups.Add(1);
-redTeam.Spawns.SpawnPointsGroups.Add(2);
-blueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
-redTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
+Teams.Add("Blue", "Teams/Blue", new Color(0, 0, 1, 0));
+Teams.Add("Red", "Teams/Red", new Color(1, 0, 0, 0));
+var BlueTeam = Teams.Get("Blue");
+var RedTeam = Teams.Get("Red");
+BlueTeam.Spawns.SpawnPointsGroups.Add(1);
+RedTeam.Spawns.SpawnPointsGroups.Add(2);
+BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
+RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
 // Задаём макс смертей команд
 var maxDeaths = Players.MaxCount * 5;
