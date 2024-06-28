@@ -7,14 +7,14 @@ var WaitingPlayersTime = 5;
 var BuildBaseTime = 20;
 var GameModeTime = 500;
 var EndOfMatchTime = 10;
-var KnivesModeTime = 40;
+var KnivesModTime = 40;
 
 // Константы имён
 var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
-var KnivesModeStateValue = "KnivesMode";
+var KnivesModStateValue = "KnivesMode";
 
 // Постоянные, переменны
 var mainTimer = Timers.GetContext().Get("Main");
@@ -198,7 +198,7 @@ function SetGameMode()
 	SpawnTeams();
 }
 function SetKnivesMode()
-}	
+{	
 	stateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
 	var inventory = Inventory.GetContext();
@@ -214,11 +214,10 @@ function SetKnivesMode()
 		inventory.Melee.Value = true;
 		inventory.Explosive.Value = false;
 		inventory.Build.Value = true;
-	}
 
-	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Spawn();
-	SpawnTeams();
+	        mainTimer.Restart(GameModeTime);
+	        Spawns.GetContext().Spawn();
+	        SpawnTeams();
 }
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
