@@ -5,7 +5,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 // Константы
 var WaitingPlayersTime = 15;
 var BuildBaseTime = 20;
-var GameModeTime = 1000;
+var GameModeTime = 700;
 var EndOfMatchTime = 10;
 
 // Константы имён
@@ -172,6 +172,7 @@ function SetBuildMode()
 
         mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().enable = true;
+        Spawns.Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
@@ -195,7 +196,7 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Despawn();
+	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetEndOfMatchMode() {
@@ -203,8 +204,8 @@ function SetEndOfMatchMode() {
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
 
 	var spawns = Spawns.GetContext();
-	spawns.enable = false;
-	spawns.Despawn();
+	spawns.enable = true;
+	spawns.Spawn();
 	Game.GameOver(LeaderBoard.GetTeams());
 	mainTimer.Restart(EndOfMatchTime);
 }
