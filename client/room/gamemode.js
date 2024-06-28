@@ -148,14 +148,14 @@ mainTimer.OnTimer.Add(function() {
 	}
 });
 
-// Задаём первое игровое, состояние
+// Задаём первое, игровое состояние
 SetWaitingMode();
 
-// Состояние игры
+// Состояние, игры
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Hint/WaitingPlayers";
-	Spawns.GetContext().enable = true;
+	Spawns.GetContext().enable = false;
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
@@ -170,54 +170,34 @@ function SetBuildMode()
 	inventory.Explosive.Value = false;
 	inventory.Build.Value = true;
 
-        mainTimer.Restart(BuildBaseTime);
+	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().enable = true;
-        Spawns.Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
 {
-	        stateProp.Value = GameStateValue;
-	        Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
-	        var inventory = Inventory.GetContext();
-		inventory.Main.Value = true;
-		inventory.Secondary.Value = true;
+	stateProp.Value = GameStateValue;
+	Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
+	var inventory = Inventory.GetContext();
+	if (GameMode.Parameters.GetBool("OnlyKnives")) {
+		inventory.Main.Value = false;
+		inventory.Secondary.Value = false;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
+		inventory.Explosive.Value = false;
 		inventory.Build.Value = true;
 	} else {
-		inventory.Main.Value = true;
-		inventory.Secondary.Value = true;
+		inventory.Main.Value = false;
+		inventory.Secondary.Value = false;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
+		inventory.Explosive.Value = false;
 		inventory.Build.Value = true;
+	}
 
-	        mainTimer.Restart(GameModeTime);
-	         Spawns.GetContext().Spawn();
-	         SpawnTeams();
+	mainTimer.Restart(GameModeTime);
+	Spawns.GetContext().Despawn();
+	SpawnTeams();
 }
-function SetEndOfMatchMode() 
-{
-	         stateProp.Value = GameStateValue;
-                 Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
-	         var inventory = Inventory.GetContext();
-	        if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		        inventory.Main.Value = false;
-			inventory.Secondary.Value = false;
-			inventory.Melee.Value = true;
-			inventory.Explosive.Value = false;
-			inventory.Build.Value = true;
-		} else {
-			inventory.Main.Value = false;
-			inventory.Secondary.Value = false;
-			inventory.Melee.Value = true;
-			inventory.Explosive.Value = false;
-			inventpry.Build.Value = true;
-
-	                mainTimer.Restart(GameModeTime);
-	                Spawns.GetContext().Spawn();
-	                SpawnTeam();
-        }
+function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
 
@@ -236,4 +216,4 @@ function SpawnTeams() {
 	while (e.moveNext()) {
 		Spawns.GetContext(e.Current).Spawn();
 	}
-      }
+}
