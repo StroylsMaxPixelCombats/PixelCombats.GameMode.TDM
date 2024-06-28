@@ -3,9 +3,9 @@ import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
 
 // Константы
-var WaitingPlayersTime = 15;
+var WaitingPlayersTime = 5;
 var BuildBaseTime = 20;
-var GameModeTime = 700;
+var GameModeTime = 500;
 var EndOfMatchTime = 10;
 
 // Константы имён
@@ -182,21 +182,21 @@ function SetGameMode()
 
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		inventory.Main.Value = false;
-		inventory.Secondary.Value = false;
+		inventory.Main.Value = true;
+		inventory.Secondary.Value = true;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = false;
+		inventory.Explosive.Value = true;
 		inventory.Build.Value = true;
 	} else {
-		inventory.Main.Value = false;
-		inventory.Secondary.Value = false;
+		inventory.Main.Value = true;
+		inventory.Secondary.Value = true;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = false;
-		inventory.Build.Value = false;
+		inventory.Explosive.Value = true;
+		inventory.Build.Value = true;
 	}
 
 	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Spawn();
+	Spawns.GetContext().Despawn();
 	SpawnTeams();
 }
 function SetEndOfMatchMode() {
@@ -204,8 +204,8 @@ function SetEndOfMatchMode() {
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
 
 	var spawns = Spawns.GetContext();
-	spawns.enable = true;
-	spawns.Spawn();
+	spawns.enable = false;
+	spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
 	mainTimer.Restart(EndOfMatchTime);
 }
