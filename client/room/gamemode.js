@@ -177,9 +177,8 @@ function SetBuildMode()
 }
 function SetGameMode() 
 {
-	stateProp.Value = GameStateValue;
-	Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
-
+	        stateProp.Value = GameStateValue;
+	        Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
 	        var inventory = Inventory.GetContext();
 		inventory.Main.Value = true;
 		inventory.Secondary.Value = true;
@@ -192,15 +191,15 @@ function SetGameMode()
 		inventory.Melee.Value = true;
 		inventory.Explosive.Value = true;
 		inventory.Build.Value = true;
-	}
 
-	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Spawn();
-        Spawns.Spawn();
-	SpawnTeams();
+	        mainTimer.Restart(GameModeTime);
+	         Spawns.GetContext().Spawn();
+	         SpawnTeams();
 }
 function SetEndOfMatchMode() 
 {
+	         stateProp.Value = GameStateValue;
+                 Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
 	         var inventory = Inventory.GetContext();
 	        if (GameMode.Parameters.GetBool("OnlyKnives")) {
 		        inventory.Main.Value = false;
@@ -214,11 +213,10 @@ function SetEndOfMatchMode()
 			inventory.Melee.Value = true;
 			inventory.Explosive.Value = false;
 			inventpry.Build.Value = true;
-		}
 
-	        mainTimer.Restart(GameModeTime);
-	        Spawns.GetContext().Spawn();
-	        SpawnTeam();
+	                mainTimer.Restart(GameModeTime);
+	                Spawns.GetContext().Spawn();
+	                SpawnTeam();
         }
 	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
