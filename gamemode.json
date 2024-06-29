@@ -43,19 +43,19 @@
       {
         "Name": "default_game_mode_length",
         "DisplayName": "ДЛИННА МАТЧА",
-        "Default": "Length_КОРОТКАЯ(2 МИНУТЫ)",
+        "Default": "Length_КОРОТКАЯ",
         "Variants": [
           {
-            "Name": "Length_КОРОТКАЯ(2 МИНУТЫ)",
-            "DisplayName": "КОРОТКАЯ(2 МИНУТЫ)"
+            "Name": "Length_КОРОТКАЯ",
+            "DisplayName": "КОРОТКАЯ"
           },
           {
-            "Name": "Length_СРЕДНЯЯ(4 МИНУТЫ)",
-            "DisplayName": "СРЕДНЯЯ(4 МИНУТЫ)"
+            "Name": "Length_СРЕДНЯЯ",
+            "DisplayName": "СРЕДНЯЯ"
           },
           {
-            "Name": "Length_ДЛИННАЯ(7 МИНУТЫ)",
-            "DisplayName": "ДЛИННАЯ(7 МИНУТЫ)"
+            "Name": "Length_ДЛИННАЯ",
+            "DisplayName": "ДЛИННАЯ"
           }
         ]
       }
