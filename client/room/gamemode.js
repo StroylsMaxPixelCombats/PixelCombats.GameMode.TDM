@@ -44,36 +44,36 @@ BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
 // Задаём макс смертей, команд
-var maxDeaths = Players.MaxCount * 5;
+var maxDeaths = Players.MaxCount * 50;
 Teams.Get("Red").Properties.Get("Deaths").Value = maxDeaths;
 Teams.Get("Blue").Properties.Get("Deaths").Value = maxDeaths;
 // Задаём что выводить, в лидербордах
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
-		DisplayName: "Statistics/Kills",
-		ShortDisplayName: "Statistics/KillsShort"
+		DisplayName: "Киллы",
+		ShortDisplayName: "Киллы"
 	},
 	{
 		Value: "Deaths",
-		DisplayName: "Statistics/Deaths",
-		ShortDisplayName: "Statistics/DeathsShort"
+		DisplayName: "Смерти",
+		ShortDisplayName: "Смерти"
 	},
 	{
 		Value: "Spawns",
-		DisplayName: "Statistics/Spawns",
-		ShortDisplayName: "Statistics/SpawnsShort"
+		DisplayName: "Спавны",
+		ShortDisplayName: "Спавны"
 	},
 	{
 		Value: "Scores",
-		DisplayName: "Statistics/Scores",
-		ShortDisplayName: "Statistics/ScoresShort"
+		DisplayName: "Очки",
+		ShortDisplayName: "Очки"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
 	Value: "Deaths",
-	DisplayName: "Statistics\Deaths",
-	ShortDisplayName: "Statistics\Deaths"
+	DisplayName: "Смерти",
+	ShortDisplayName: "Смерти"
 };
 // Вес команды, в лидерборде
 LeaderBoard.TeamWeightGetter.Set(function(team) {
@@ -97,7 +97,7 @@ Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()});
 var immortalityTimerName="immortality";
 Spawns.GetContext().OnSpawn.Add(function(player){
 	Player.Properties.Immortality.Value=true;
-	timer=Player.Timers.Get(immortalityTimerName).Restart(5);
+	timer=Player.Timers.Get(immortalityTimerName).Restart(15);
 });
 Timers.OnPlayerTimer.Add(function(timer){
 	if(timer.Id!=immortalityTimerName) return;
