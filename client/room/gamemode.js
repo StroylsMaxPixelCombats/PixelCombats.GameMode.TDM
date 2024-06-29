@@ -65,7 +65,7 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "Очки"
 	},
 	{
-		Value: "Spawn",
+		Value: "Spawns",
 		DisplayName: "Спавны",
 		ShortDisplayName: "Спавны"
 	}
