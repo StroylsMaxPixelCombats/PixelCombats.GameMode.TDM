@@ -171,27 +171,8 @@ function SetBuildMode()
 	inventory.Melee.Value = true;
 	inventory.Explosive.Value = false;
 	inventory.Build.Value = true;
-	// Разрешение нанесения, урона
-	Damage.GetContext().DamageOut.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
-	Spawns.GetContext().enable = true;
-	SpawnTeams();
-}
-function SetKnivesMode()
-{
-	stateProp.Value = KnivesModeStateValue;
-	Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
-	var inventory = Inventory.GetContext();
-	inventory.Main.Value = false;
-	inventory.Secondary.Value = false;
-	inventory.Melee.Value = true;
-	inventory.Explosive.Value = false;
-	inventory.Build.Value = true;
-	// Разрешение, нанесения урона
-	Damage.GetContext().DamageOut.Value = true;
-
-	mainTimer.Restart(KnivesModeTime);
 	Spawns.GetContext().enable = true;
 	SpawnTeams();
 }
@@ -199,12 +180,13 @@ function SetGameMode()
 {
 	stateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
+
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		inventory.Main.Value = true;
-		inventory.Secondary.Value = true;
+		inventory.Main.Value = false;
+		inventory.Secondary.Value = false;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
+		inventory.Explosive.Value = false;
 		inventory.Build.Value = true;
 	} else {
 		inventory.Main.Value = true;
@@ -212,12 +194,11 @@ function SetGameMode()
 		inventory.Melee.Value = true;
 		inventory.Explosive.Value = true;
 		inventory.Build.Value = true;
-		// Разрешения нанесения, урона
-		Damage.GetContext().DamageOut.Value = true;
+	}
 
-	        mainTimer.Restart(GameModeTime);
-	        Spawns.GetContext().Spawn();
-	        SpawnTeams();
+	mainTimer.Restart(GameModeTime);
+	Spawns.GetContext().Despawn();
+	SpawnTeams();
 }
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
