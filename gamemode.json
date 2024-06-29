@@ -42,25 +42,20 @@
     "Dropdown": [
       {
         "Name": "default_game_mode_length",
-        "DisplayName": "ДЛИННАЯ МАТЧА",
-        "Default": "Length_M",
-        "Order": 6,
+        "DisplayName": "ДЛИННА МАТЧА",
+        "Default": "Length_КОРОТКАЯ(2 МИНУТЫ)",
         "Variants": [
           {
-            "Name": "Length_КОРОТКАЯ(2 МИНУТ)",
-            "DisplayName": "GmParams/Length_S"
+            "Name": "Length_КОРОТКАЯ(2 МИНУТЫ)",
+            "DisplayName": "КОРОТКАЯ(2 МИНУТЫ)"
           },
           {
-            "Name": "Length_К",
-            "DisplayName": "GmParams/Length_M"
+            "Name": "Length_СРЕДНЯЯ(4 МИНУТЫ)",
+            "DisplayName": "СРЕДНЯЯ(4 МИНУТЫ)"
           },
           {
-            "Name": "Length_L",
-            "DisplayName": "GmParams/Length_L"
-          },
-          {
-            "Name": "Length_XL",
-            "DisplayName": "GmParams/Length_XL"
+            "Name": "Length_ДЛИННАЯ(7 МИНУТЫ)",
+            "DisplayName": "ДЛИННАЯ(7 МИНУТЫ)"
           }
         ]
       }
