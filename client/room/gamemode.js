@@ -6,7 +6,7 @@ import * as default_timer from './default_timer.js';
 // Константы
 var WaitingPlayersTime = 5;
 var BuildBaseTime = 20;
-var GameModeTime = 500;
+var GameModeTime = default_timer.game_mode_length_seconds();
 var EndOfMatchTime = 10;
 var KnivesModeTime = 40;
 
