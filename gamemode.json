@@ -38,6 +38,32 @@
         "Name": "FriendlyFire",
         "DisplayName": "УРОН ПО СВОИМ"
       }
+    ],
+    "Dropdown": [
+      {
+        "Name": "default_game_mode_length",
+        "DisplayName": "ДЛИННАЯ МАТЧА",
+        "Default": "Length_M",
+        "Order": 6,
+        "Variants": [
+          {
+            "Name": "Length_КОРОТКАЯ(2 МИНУТ)",
+            "DisplayName": "GmParams/Length_S"
+          },
+          {
+            "Name": "Length_К",
+            "DisplayName": "GmParams/Length_M"
+          },
+          {
+            "Name": "Length_L",
+            "DisplayName": "GmParams/Length_L"
+          },
+          {
+            "Name": "Length_XL",
+            "DisplayName": "GmParams/Length_XL"
+          }
+        ]
+      }
     ]
   }
 }
