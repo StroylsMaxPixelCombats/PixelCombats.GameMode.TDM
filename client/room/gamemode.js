@@ -182,10 +182,11 @@ function SetGameMode()
 	Ui.GetContext().Hint.Value = "Hint/AttackEnemies";
 
 	var inventory = Inventory.GetContext();
-		inventory.Main.Value = true;
-		inventory.Secondary.Value = true;
+	if (GameMode.Parameters.GetBool("OnlyKnives")) {
+		inventory.Main.Value = false;
+		inventory.Secondary.Value = false;
 		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
+		inventory.Explosive.Value = false;
 		inventory.Build.Value = true;
 	} else {
 		inventory.Main.Value = true;
