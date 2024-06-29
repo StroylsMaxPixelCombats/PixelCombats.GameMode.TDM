@@ -44,7 +44,7 @@ BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
 // Задаём макс смертей, команд
-var maxDeaths = Players.MaxCount * 50;
+var maxDeaths = Players.MaxCount * 5;
 Teams.Get("Red").Properties.Get("Deaths").Value = maxDeaths;
 Teams.Get("Blue").Properties.Get("Deaths").Value = maxDeaths;
 // Задаём что выводить, в лидербордах
@@ -60,14 +60,14 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "Смерти"
 	},
 	{
-		Value: "Spawns",
-		DisplayName: "Спавны",
-		ShortDisplayName: "Спавны"
-	},
-	{
 		Value: "Scores",
 		DisplayName: "Очки",
 		ShortDisplayName: "Очки"
+	},
+	{
+		Value: "Spawn",
+		DisplayName: "Спавны",
+		ShortDisplayName: "Спавны"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
@@ -97,7 +97,7 @@ Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()});
 var immortalityTimerName="immortality";
 Spawns.GetContext().OnSpawn.Add(function(player){
 	Player.Properties.Immortality.Value=true;
-	timer=Player.Timers.Get(immortalityTimerName).Restart(15);
+	timer=Player.Timers.Get(immortalityTimerName).Restart(7);
 });
 Timers.OnPlayerTimer.Add(function(timer){
 	if(timer.Id!=immortalityTimerName) return;
@@ -170,7 +170,7 @@ function SetBuildMode()
 	inventory.Secondary.Value = false;
 	inventory.Melee.Value = true;
 	inventory.Explosive.Value = false;
-	inventory.Build.Value = true;
+	inventory.Build.Value = true;    
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().enable = true;
