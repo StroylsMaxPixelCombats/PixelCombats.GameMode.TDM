@@ -1,18 +1,18 @@
+// Библиотека для работы, командных матчей ТДМ
+
 import { GameMode } from 'pixel_combats/room';
 
 // Константы, времении
-var PARAMETER_GAME_LENGTH = 'default_game_mode_length';
+const PARAMETER_GAME_LENGTH = 'default_game_mode_length';
 
-// Длинна матча, каждого раунда
+// Длительность матча, выборного для игрока 
 export function game_mode_length_seconds() {
-var length = GameMode.Parameters.GetString(PARAMETER_GAME_LENGTH);
-switch (length) {
-  case 'length_КОРОТКАЯ': return 230; // 4 min 
-  case 'length_СРЕДНЯЯ': return 520; // 5 min
-  case 'length_ДЛИННАЯ': return 720; // 6 min
-  case 'length_ДЛИТЕЛЬНАЯ': return 850; // 7 min
+    const length = GameMode.Parameters.GetString(PARAMETER_GAME_LENGTH);
+    switch (length) {
+        case 'Length_КОРОТКАЯ': return 240; // 4 min
+        case 'Length_СРЕДНЯЯ': return 300; // 5 min
+        case 'Length_ДЛИННАя': return 360; // 6 min
+        case 'Length_ДЛИТЕЛЬНАЯ': return 420; // 7 min
+    }
+    return 300;
 }
-return 300;
-}
-
-
