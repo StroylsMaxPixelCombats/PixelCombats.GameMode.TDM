@@ -10,7 +10,7 @@ export function game_mode_length_seconds() {
     const length = GameMode.Parameters.GetString(PARAMETER_GAME_LENGTH);
     switch (length) {
         case 'Length_КОРОТКАЯ': return 140; // 1 min
-        case 'Length_СРЕДНЯЯ': return 300; // 5 min
+        case 'Length_СРЕДНЯЯ': return 450; // 4 min
         case 'Length_ДЛИННАя': return 360; // 6 min
         case 'Length_ДЛИТЕЛЬНАЯ': return 420; // 7 min
     }
