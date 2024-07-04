@@ -205,9 +205,9 @@ function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
 
-	var spawns = Spawns.GetContext();
-	spawns.enable = false;
-	spawns.Despawn();
+	var Spawns = Spawns.GetContext();
+	Spawns.Enable = false;
+	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
 	mainTimer.Restart(EndOfMatchTime);
 }
@@ -216,8 +216,6 @@ function RestartGame() {
 }
 
 function SpawnTeams() {
-	var e = Teams.GetEnumerator();
-	while (e.moveNext()) {
-		Spawns.GetContext(e.Current).Spawn();
-	}
+	for (var Team of Teams)
+		Spawns.GetContext(Team).Spawn();
 }
