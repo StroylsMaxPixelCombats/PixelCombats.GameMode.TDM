@@ -216,6 +216,6 @@ function RestartGame() {
 }
 
 function SpawnTeams() {
-	for (var team of Teams)
+	for (var Team of Teams)
 		Spawns.GetContext(team).Spawn();
 }
