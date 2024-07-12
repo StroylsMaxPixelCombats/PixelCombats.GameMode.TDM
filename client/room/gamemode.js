@@ -198,24 +198,23 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Despawn();
+	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
 
-	var Spawns = Spawns.GetContext();
 	Spawns.Enable = false;
 	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
 	mainTimer.Restart(EndOfMatchTime);
 }
 function RestartGame() {
-	Game.RestartGame();
+Game.RestartGame();
 }
 
 function SpawnTeams() {
-var Teams = Teams.Spawn();
-Spawns.GetContext(Teams).Spawn();
+Spawns.GetContext().Spawn();
+SpawnTeams();
 }
