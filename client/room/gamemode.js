@@ -204,8 +204,6 @@ function SetGameMode()
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "Hint/EndOfMatch";
-	
-        var Spawns = Spawn.GetContext();
 	Spawns.Enable = false;
 	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
