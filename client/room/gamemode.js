@@ -10,7 +10,7 @@ var GameModeTime = default_timer.game_mode_length_seconds();
 var EndOfMatchTime = 10;
 var KnivesModeTime = 40;
 
-// Константы имён
+// Константы, имён
 var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
@@ -43,7 +43,6 @@ BlueTeam.Spawns.SpawnPointsGroups.Add(1);
 RedTeam.Spawns.SpawnPointsGroups.Add(2);
 BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
-
 // Задаём макс смертей, команд
 var maxDeaths = Players.MaxCount * 5;
 Teams.Get("Red").Properties.Get("Deaths").Value = maxDeaths;
