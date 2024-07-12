@@ -51,29 +51,29 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = maxDeaths;
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
-		DisplayName: "Киллы",
-		ShortDisplayName: "Киллы"
+		DisplayName: "У",
+		ShortDisplayName: "У"
 	},
 	{
 		Value: "Deaths",
-		DisplayName: "Смерти",
-		ShortDisplayName: "Смерти"
-	},
-	{
-		Value: "Scores",
-		DisplayName: "Очки",
-		ShortDisplayName: "Очки"
+		DisplayName: "С",
+		ShortDisplayName: "С"
 	},
 	{
 		Value: "Spawns",
-		DisplayName: "Спавны",
-		ShortDisplayName: "Спавны"
+		DisplayName: "С",
+		ShortDisplayName: "С"
+	},
+	{
+		Value: "Scores",
+		DisplayName: "О",
+		ShortDisplayName: "О"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
 	Value: "Deaths",
-	DisplayName: "Смерти",
-	ShortDisplayName: "Смерти"
+	DisplayName: "С",
+	ShortDisplayName: "С"
 };
 // Вес команды, в лидерборде
 LeaderBoard.TeamWeightGetter.Set(function(team) {
