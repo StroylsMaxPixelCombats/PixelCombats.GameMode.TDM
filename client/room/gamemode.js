@@ -212,10 +212,10 @@ function SetEndOfMatchMode() {
 	mainTimer.Restart(EndOfMatchTime);
 }
 function RestartGame() {
-Game.RestartGame();
+  Game.RestartGame();
 }
 
 function SpawnTeams() {
-Spawns.GetContext().Spawn();
-SpawnTeams();
+var Spawns = Teams.Spawn();
+  Spawns.GetContext().Spawn();
 }
