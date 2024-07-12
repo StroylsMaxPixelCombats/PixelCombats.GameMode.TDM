@@ -164,7 +164,7 @@ function SetWaitingMode() {
 function SetBuildMode() 
 {
 	stateProp.Value = BuildModeStateValue;
-	Ui.GetContext().Hint.Value = "Застраивайте, базу!";
+	Ui.GetContext().Hint.Value = "!Застраивайте, базу!";
 	var inventory = Inventory.GetContext();
 	inventory.Main.Value = false;
 	inventory.Secondary.Value = false;
@@ -179,7 +179,7 @@ function SetBuildMode()
 function SetGameMode() 
 {
 	stateProp.Value = GameStateValue;
-	Ui.GetContext().Hint.Value = "Атакуйте, врагов!";
+	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
 
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
