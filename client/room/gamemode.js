@@ -204,7 +204,7 @@ function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
-	Ui.GetContext().Hint.Value = "Конец, матча";
+	Ui.GetContext().Hint.Value = "!Конец, матча!";
 	Game.GameOver(LeaderBoard.GetTeams());
 	mainTimer.Restart(EndOfMatchTime);
 }
