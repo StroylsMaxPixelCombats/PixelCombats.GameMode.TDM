@@ -11,8 +11,7 @@ export function game_mode_length_seconds() {
     switch (length) {
         case 'Length_КОРОТКАЯ': return 140;; // 1 min
         case 'Length_СРЕДНЯЯ': return 260; // 2 min
-        case 'Length_ДЛИННАя': return 380; // 3 min
-        case 'Length_ДЛИТЕЛЬНАЯ': return 420; // 4 min
+        case 'Length_ДЛИННАЯ': return 480; // 3 min
     }
     return 300;
 }
