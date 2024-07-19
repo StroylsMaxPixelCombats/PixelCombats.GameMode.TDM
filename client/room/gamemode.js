@@ -35,8 +35,8 @@ Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Создаём команды
-Teams.Add("Blue", "Teams/Blue", new Color(0, 0, 1, 0));
-Teams.Add("Red", "Teams/Red", new Color(1, 0, 0, 0));
+Teams.Add("Blue", "ЛЮДИ", new Color(0, 0, 1, 0));
+Teams.Add("Red", "ЗОМБИ", new Color(0, 1, 0, 0));
 var BlueTeam = Teams.Get("Blue");
 var RedTeam = Teams.Get("Red");
 BlueTeam.Spawns.SpawnPointsGroups.Add(1);
