@@ -111,7 +111,7 @@ Properties.OnPlayerProperty.Add(function(Context, Value) {
 // Если в команде количество смертей занулилось, то завершаем игру:
 Properties.OnTeamProperty.Add(function(Context, Value) {
 	if (Value.Name !== "Deaths") return;
-	if (Context.Value <= 0) SetEndOfMatchMode();
+	if (Value.Value <= 0) SetEndOfMatchMode();
 });
 
 // Счётчик, спавнов:
