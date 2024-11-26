@@ -30,7 +30,6 @@ BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 BreackGraph.PlayerBlockBoost = true;
 
 // Параметры игры:
-Properties.GetContext().GameModeName.Value = "GameModes/!A battle between two teams!";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Стандартные, команды:
@@ -93,14 +92,14 @@ Teams.OnRequestJoinTeam.Add(function(Player, Team){Team.Add(Player);});
 Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 
 // Делаем игроков неуязвимыми, после спавна:
-var immortalityTimerName = "immortality";
+var immortalityTimerName="immortality";
 Spawns.GetContext().OnSpawn.Add(function(Player){
-	Player.Properties.Immortality.Value = true;
-	Timer = Player.Timers.Get(immortalityTimerName).Restart(7);
+	Player.Properties.Immortality.Value=true;
+	Timer=Player.Timers.Get(immortalityTimerName).Restart(7);
 });
 Timers.OnPlayerTimer.Add(function(Timer){
-	if(Timer.Id! = immortalityTimerName) return;
-	Timer.Player.Properties.Immortality.Value = false;
+	if(Timer.Id! =immortalityTimerName) return;
+	Timer.Player.Properties.Immortality.Value=false;
 });
 
 // После каждой смерти игрока, отнимаем одну смерть, в команде:
@@ -213,8 +212,8 @@ function RestartGame() {
 }
 
 function SpawnTeams() {
-var Spawn = API.Teams.All;
-Spawn.forEach((Team) => {
-    Team.Spawns.Spawn();
+var Spawns = Spawns.Spawn();
+   Spawns.GetContext().Spawn();
 });
-}
+
+
