@@ -203,7 +203,7 @@ function SetEndOfMatchMode() {
 
 	var Spawns = Spawns.GetContext();
 	Spawns.GetContext().Enable = false;
-	Spawns.GetContext().Despawn();
+	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
 	mainTimer.Restart(EndOfMatchTime);	
 }
