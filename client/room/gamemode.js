@@ -204,7 +204,6 @@ function SetEndOfMatchMode() {
 	Spawns.Enable = false;
 	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
-
 	mainTimer.Restart(EndOfMatchTime);	
 }
 function RestartGame() {
