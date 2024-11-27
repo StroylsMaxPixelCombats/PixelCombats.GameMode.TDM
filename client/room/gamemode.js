@@ -31,8 +31,8 @@ Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Стандартные, команды:
-Teams.Add("Blue", "<b><i><color=Blue>[Синия]-|команда</a></i></b>", new Color(0, 0, 1, 0));
-Teams.Add("Red", "<b><i><color=Red>[Красная]-|команда</a><i></b>", new Color(1, 0, 0, 0));
+Teams.Add("Blue", "<b><i>Синия - команда</i></b>", new Color(0, 0, 1, 0));
+Teams.Add("Red", "<b><i>Красная - команда<i></b>", new Color(1, 0, 0, 0));
 var BlueTeam = Teams.Get("Blue");
 var RedTeam = Teams.Get("Red");
 BlueTeam.Spawns.SpawnPointsGroups.Add(1);
@@ -155,7 +155,6 @@ function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
 	Spawns.GetContext().Enable = false;
-	Spawns.GetContext().Despawn();
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
@@ -172,6 +171,7 @@ function SetBuildMode()
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().Enable = true;
+	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
@@ -195,7 +195,7 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Despawn();
+	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetEndOfMatchMode() {
