@@ -3,9 +3,9 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 
 // Константы:
 var WaitingPlayersTime = 5;
-var BuildBaseTime = 21;
-var GameModeTime = 601;
-var EndOfMatchTime = 11;
+var BuildBaseTime = 20;
+var GameModeTime = 600;
+var EndOfMatchTime = 10;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -162,12 +162,12 @@ function SetBuildMode()
 {
 	stateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "!Застраивайте базу - и атакуйте, врагов!";
-	var Inventory = Inventory.GetContext();
-	Inventory.Main.Value = false;
-	Inventory.Secondary.Value = false;
-	Inventory.Melee.Value = true;
-	Inventory.Explosive.Value = false;
-	Inventory.Build.Value = true;
+	var inventory = Inventory.GetContext();
+	inventory.Main.Value = false;
+	inventory.Secondary.Value = false;
+	inventory.Melee.Value = true;
+	inventory.Explosive.Value = false;
+	inventory.Build.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.Enable = true;
