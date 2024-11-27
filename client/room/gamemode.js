@@ -154,8 +154,7 @@ SetWaitingMode();
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
-	Spawns.GetContext().Enable = false;
-	Spawns.Despawn();
+	Spawns.Enable = false;
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
@@ -163,7 +162,6 @@ function SetBuildMode()
 {
 	stateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "!Застраивайте базу - и атакуйте, врагов!";
-	Spawns.Spawn();
 	var inventory = Inventory.GetContext();
 	inventory.Main.Value = false;
 	inventory.Secondary.Value = false;
@@ -172,7 +170,7 @@ function SetBuildMode()
 	inventory.Build.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
-	Spawns.Enable = true;
+	Spawns.GetContext().Enable = true;
 	SpawnTeams();
 }
 function SetGameMode() 
