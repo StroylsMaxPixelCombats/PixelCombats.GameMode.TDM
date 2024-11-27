@@ -230,9 +230,5 @@ function RestartGame() {
 
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
-	 Spawns.GetContext().Spawn();
-	    SpawnTeams();
-		
-	}
-}
-
+	 Spawns.GetContext().Spawn();		
+    }
