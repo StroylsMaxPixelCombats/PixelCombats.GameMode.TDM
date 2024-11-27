@@ -1,11 +1,12 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
 
 // Константы:
 var WaitingPlayersTime = 1;
 var BuildBaseTime = 31;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
+var VoteTime = 21;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -196,6 +197,18 @@ function SetGameMode()
 	mainTimer.Restart(GameModeTime);
 	Spawns.GetContext().Spawn();
 	SpawnTeams();
+}	
+function OnVoteResult(Value) {
+	if (Value.Result === null) return;
+	NewGame.RestartGame(Value.Result);
+}
+NewGameVote.OnResult.Add(OnVoteResult); // вынесено из функции, которая выполняется только на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза и появилось 2 подписки
+
+function start_vote() {
+	NewGameVote.Start({
+		Variants: [{ MapId: 0 }],
+		Timer: VoteTime
+	}, MapRotation ? 3 : 0);
 }
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
