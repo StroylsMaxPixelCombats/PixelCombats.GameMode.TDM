@@ -154,8 +154,8 @@ SetWaitingMode();
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
-	Spawns.GetContext().Enable = true;
-	Spawns.Despawn();
+	Spawns.GetContext().Enable = false;
+	Spawns.GetContext().Despawn();
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
@@ -171,6 +171,7 @@ function SetBuildMode()
 	Inventory.Build.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
+        Spawns.GetContext().Enable = true;
         Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
