@@ -32,7 +32,7 @@ TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Стандартные, команды:
 Teams.Add("Blue", "<b><i>Синия - команда</i></b>", new Color(0, 0, 1, 0));
-Teams.Add("Red", "<b><i>Красная - команда<i></b>", new Color(1, 0, 0, 0));
+Teams.Add("Red", "<b><i>Красная - команда</i></b>", new Color(1, 0, 0, 0));
 var BlueTeam = Teams.Get("Blue");
 var RedTeam = Teams.Get("Red");
 BlueTeam.Spawns.SpawnPointsGroups.Add(1);
@@ -171,7 +171,6 @@ function SetBuildMode()
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().Enable = true;
-	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
