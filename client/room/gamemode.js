@@ -31,8 +31,8 @@ Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Стандартные, команды:
-Teams.Add("Blue", "<b><i>Синия - команда</i></b>", new Color(0, 0, 1, 0));
-Teams.Add("Red", "<b><i>Красная - команда</i></b>", new Color(1, 0, 0, 0));
+Teams.Add("Blue", "Teams/Blue", new Color(0, 0, 1, 0));
+Teams.Add("Red", "Teams/Red", new Color(1, 0, 0, 0));
 var BlueTeam = Teams.Get("Blue");
 var RedTeam = Teams.Get("Red");
 BlueTeam.Spawns.SpawnPointsGroups.Add(1);
@@ -48,23 +48,23 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
-		DisplayName: "Убийства:",
-		ShortDisplayName: "Убийства:"
+		DisplayName: "У:",
+		ShortDisplayName: "У:"
 	},
 	{
 		Value: "Deaths",
-		DisplayName: "Смерти:",
-		ShortDisplayName: "Смерти:"
+		DisplayName: "С:",
+		ShortDisplayName: "С:"
 	},
 	{
 		Value: "Spawns",
-		DisplayName: "Спавны:",
-		ShortDisplayName: "Спавны:"
+		DisplayName: "С:",
+		ShortDisplayName: "С:"
 	},
 	{
 		Value: "Scores",
-		DisplayName: "Очки:",
-		ShortDisplayName: "Очки:"
+		DisplayName: "О:",
+		ShortDisplayName: "О:"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
