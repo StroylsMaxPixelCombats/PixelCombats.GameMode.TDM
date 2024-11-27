@@ -3,7 +3,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 
 // Константы:
 var WaitingPlayersTime = 11;
-var BuildBaseTime = 31;
+var BuildBaseTime = 21;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
 
@@ -154,7 +154,7 @@ SetWaitingMode();
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
-	Spawns.GetContext().Enable = false;
+	Spawns.GetContext().enable = false;
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
@@ -170,7 +170,7 @@ function SetBuildMode()
 	Inventory.Build.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
-	Spawns.GetContext().Enable = true;
+	Spawns.GetContext().enable = true;
 	SpawnTeams();
 }
 function SetGameMode() 
