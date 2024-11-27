@@ -4,7 +4,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 // Константы:
 var WaitingPlayersTime = 1;
 var BuildBaseTime = 31;
-var GameModeTime = 601;
+var GameModeTime = 5;
 var EndOfMatchTime = 11;
 
 // Константы, имён:
@@ -200,11 +200,11 @@ function SetGameMode()
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "!Конец, матча!";
-
 	var Spawns = Spawns.GetContext();
 	Spawns.GetContext().Enable = false;
 	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
+
 	mainTimer.Restart(EndOfMatchTime);	
 }
 function RestartGame() {
