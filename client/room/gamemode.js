@@ -48,23 +48,23 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
-		DisplayName: "<b><color=Yellow>Убийства:</a></b>",
-		ShortDisplayName: "<b><color=Yellow>Убийства:</a></b>"
+		DisplayName: "Убийства:",
+		ShortDisplayName: "Убийства:"
 	},
 	{
 		Value: "Deaths",
-		DisplayName: "<b><color=Red>Смерти:</a></b>",
-		ShortDisplayName: "<b><color=Red>Смерти:</a></b>"
+		DisplayName: "Смерти:",
+		ShortDisplayName: "Смерти:"
 	},
 	{
 		Value: "Spawns",
-		DisplayName: "<b><color=Blue>Спавны:</a></b>",
-		ShortDisplayName: "<b><color=Blue>Спавны:</a></b>"
+		DisplayName: "Спавны:",
+		ShortDisplayName: "Спавны:"
 	},
 	{
 		Value: "Scores",
-		DisplayName: "<b><color=Lime>Очки:</a></b>",
-		ShortDisplayName: "<b><color=Lime>Очки:</a></b>"
+		DisplayName: "Очки:",
+		ShortDisplayName: "Очки:"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
