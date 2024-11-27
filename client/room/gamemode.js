@@ -14,8 +14,8 @@ var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 
 // Постоянные - переменные:
-var MainTimer = Timers.GetContext().Get("Main");
-var StateProp = Properties.GetContext().Get("State");
+var mainTimer = Timers.GetContext().Get("Main");
+var stateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
@@ -130,8 +130,8 @@ Damage.OnKill.Add(function(Player, Killed) {
 });
 
 // Переключение - игровых, режимов:
-MainTimer.OnTimer.Add(function() {
-	switch (StateProp.Value) {
+mainTimer.OnTimer.Add(function() {
+	switch (stateProp.Value) {
 	case WaitingStateValue:
 		SetBuildMode();
 		break;
@@ -152,16 +152,16 @@ SetWaitingMode();
 
 // Состояние, игры:
 function SetWaitingMode() {
-	StateProp.Value = WaitingStateValue;
+	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
-	MainTimer.Restart(WaitingPlayersTime);
+	mainTimer.Restart(WaitingPlayersTime);
 }
 
 function SetBuildMode() 
 {
-	StateProp.Value = BuildModeStateValue;
+	stateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "!Застраивайте базу - и атакуйте, врагов!";
 	var Inventory = Inventory.GetContext();
 	Inventory.Main.Value = false;
@@ -170,14 +170,13 @@ function SetBuildMode()
 	Inventory.Explosive.Value = false;
 	Inventory.Build.Value = true;
 
-	MainTimer.Restart(BuildBaseTime);
+	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().Enable = true;
-        Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
 {
-	StateProp.Value = GameStateValue;
+	stateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
 
 	var Inventory = Inventory.GetContext();
@@ -195,24 +194,24 @@ function SetGameMode()
 		Inventory.Build.Value = true;
 	}
 
-	MainTimer.Restart(GameModeTime);
+	mainTimer.Restart(GameModeTime);
 	Spawns.GetContext().Despawn();
 	SpawnTeams();
 }
 function SetEndOfMatchMode() {
-	StateProp.Value = EndOfMatchStateValue;
+	stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "!Конец, матча!";
 
 	var Spawns = Spawns.GetContext();
 	Spawns.Enable = false;
 	Spawns.Despawn();
 	Game.GameOver(LeaderBoard.GetTeams());
-	MainTimer.Restart(EndOfMatchTime);	
+	mainTimer.Restart(EndOfMatchTime);	
 }
 function RestartGame() {
 	Game.RestartGame();
 }
 function SpawnTeams() {
-	var Spawns = Teams.Spawn();
-	 Spawns.GetContext().Spawn();		
-    }
+	var Teams = Teams.Spawn();
+	 Teams.GetContext().Spawn();		
+    } 
