@@ -171,8 +171,7 @@ function SetBuildMode()
 	Inventory.Build.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
-	Spawns.GetContext().Enable = true;
-        Spawns.Spawn();
+        Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
@@ -196,7 +195,7 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-	Spawns.Spawn();
+	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetEndOfMatchMode() {
