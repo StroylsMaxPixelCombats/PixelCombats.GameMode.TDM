@@ -171,6 +171,7 @@ function SetBuildMode()
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.Enable = true;
+	Spawns.Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
