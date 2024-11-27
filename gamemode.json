@@ -1,6 +1,6 @@
 {
-  "Name": "<b>ТДМ <i>(API 1.0)</i></b>",
-  "Description": "<b>!Битва двух, КОМАНД!</b>",
+  "Name": "ТДМ <i>(API 1.0)</i>",
+  "Description": "Team Death Match. Битва двух команд",
   "StartClientVersion": 334,
   "MapFilter": {
     "IsBlank": false,
