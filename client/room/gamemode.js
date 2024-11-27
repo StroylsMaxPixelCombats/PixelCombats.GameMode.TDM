@@ -1,5 +1,5 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Players, Inventory, Teams, Ui, Properties, GameMode, Spawns, LeaderBoard, BuildBlocksSet, BreackGraph, Damage, Timers, Game, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
 
 // Константы:
 var WaitingPlayersTime = 11;
