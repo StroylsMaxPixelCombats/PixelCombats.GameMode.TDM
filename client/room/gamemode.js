@@ -7,12 +7,14 @@ var BuildBaseTime = 31;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
+var MockModeTime = 21;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
+var MockModeStateValue = "MockMode";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
@@ -221,6 +223,7 @@ function SetEndOfMatchMode() {
 }
 function RestartGame() {
 	Game.RestartGame();
+	mainTimer.Restart(MockModeTime);
 }
 function SpawnTeams() {
 	var Teams = Teams.Spawn();
