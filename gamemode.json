@@ -1,6 +1,6 @@
 {
-  "Name": "ТДМ",
-  "Description": "БИТВА ДВУХ КОМАНД",
+  "Name": "<b>ТДМ <i>(API 1.0)</i>",
+  "Description": "<b>!Битва двух, КОМАНД!</b>",
   "StartClientVersion": 334,
   "MapFilter": {
     "IsBlank": false,
