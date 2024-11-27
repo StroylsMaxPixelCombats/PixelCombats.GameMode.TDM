@@ -155,6 +155,7 @@ function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
 	Spawns.Enable = false;
+	Spawns.Despawn();
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
@@ -179,19 +180,19 @@ function SetGameMode()
 	stateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
 
-	var Inventory = Inventory.GetContext();
+	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		Inventory.Main.Value = false;
-		Inventory.Secondary.Value = false;
-		Inventory.Melee.Value = true;
-		Inventory.Explosive.Value = false;
-		Inventory.Build.Value = true;
+		inventory.Main.Value = false;
+		inventory.Secondary.Value = false;
+		inventory.Melee.Value = true;
+		inventory.Explosive.Value = false;
+		inventory.Build.Value = true;
 	} else {
-		Inventory.Main.Value = true;
-		Inventory.Secondary.Value = true;
-		Inventory.Melee.Value = true;
-		Inventory.Explosive.Value = true;
-		Inventory.Build.Value = true;
+		inventory.Main.Value = true;
+		inventory.Secondary.Value = true;
+		inventory.Melee.Value = true;
+		inventory.Explosive.Value = true;
+		inventory.Build.Value = true;
 	}
 
 	mainTimer.Restart(GameModeTime);
