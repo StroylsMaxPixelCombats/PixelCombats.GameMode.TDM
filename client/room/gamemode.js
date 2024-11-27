@@ -162,7 +162,6 @@ function SetBuildMode()
 {
 	stateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "!Застраивайте базу - и атакуйте, врагов!";
-	Spawns.GetContext().Enable = true;
 	var Inventory = Inventory.GetContext();
 	Inventory.Main.Value = false;
 	Inventory.Secondary.Value = false;
@@ -171,7 +170,8 @@ function SetBuildMode()
 	Inventory.Build.Value = true;
 
 	mainTimer.Restart(BuildBaseTime);
-        Spawns.Spawn();
+	Spawns.GetContext().Enable = true;
+	Spawns.Spawn();
 	SpawnTeams();
 }
 function SetGameMode() 
