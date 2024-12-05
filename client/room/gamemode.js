@@ -25,6 +25,9 @@ Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 Map.Rotation = GameMode.Parameters.GetBool("MapRotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
+ if (GameMode.Parameters.GetBool("Blocks29")) {
+Player.ContextedProperties.StartBlocksCount.Value = true;
+}
 
 // Блок игрока, всегда - усилен:
 BreackGraph.PlayerBlockBoost = true;
