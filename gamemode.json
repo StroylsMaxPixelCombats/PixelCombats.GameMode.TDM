@@ -35,6 +35,10 @@
         "DisplayName": "СЛАБЫЕ БЛОКИ"
       },
       {
+        "Name": "Blocks29",
+        "DisplayName": "У ИГРОКА 29 БЛОКОВ",
+      },
+      {
         "Name": "FriendlyFire",
         "DisplayName": "УРОН ПО СВОИМ"
       }
