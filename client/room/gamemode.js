@@ -91,9 +91,7 @@ Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team) {
-	if (GameMode.Parameters.GetBool("Blocks30")) {
-  		Player.contextedProperties.StartBlocksCount.Value = 30;
-  	}
+	if (GameMode.Parameters.GetBool("Blocks30")) Player.contextedProperties.StartBlocksCount.Value = 30;
 	Team.Add(Player);
 }
 // Задаём, заспавнится игроку - в команду: 
