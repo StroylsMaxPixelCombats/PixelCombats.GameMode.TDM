@@ -26,6 +26,9 @@ Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 Map.Rotation = GameMode.Parameters.GetBool("MapRotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
+
+// Параметр, при вопрос - нужна команда:
+Teams.OnRequestJoinTeam.Add(function(Player,Team) {
 if (GameMode.Parameters.GetBool("Blocks29")) {
   Player.contextedProperties.StartBlocksCount.Value = 30;
   }
