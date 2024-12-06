@@ -24,10 +24,14 @@ var stateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
 Teams.OnRequestJoinTeam.Add(function(Player,Team) {
+if (GameMode.Parameters.GetBool("Blocks29")) {
+   Player.contextedProperties.StartBlocksCount.Value = 30;
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 Map.Rotation = GameMode.Parameters.GetBool("MapRotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
+}
+ });
 
 // Блок игрока, всегда - усилен:
 BreackGraph.PlayerBlockBoost = true;
