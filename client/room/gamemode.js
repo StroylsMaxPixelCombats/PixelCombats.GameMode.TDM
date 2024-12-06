@@ -92,6 +92,7 @@ Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team) {
+});
 // Задаём, заспавнится игроку - в команду: 
 Teams.OnPlayerChangeTeam.Add(function(Player){
 	Player.Spawns.Spawn();
