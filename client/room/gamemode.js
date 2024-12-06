@@ -1,10 +1,10 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
 	
 // Константы:
 var WaitingPlayersTime = 1;
 var BuildBaseTime = 31;
-var GameModeTime = 4;
+var GameModeTime = 601;
 var EndOfMatchTime = 11;
 
 // Константы, имён:
@@ -48,23 +48,23 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
-		DisplayName: "У:",
-		ShortDisplayName: "У:"
+		DisplayName: "У",
+		ShortDisplayName: "У"
 	},
 	{
 		Value: "Deaths",
-		DisplayName: "С:",
-		ShortDisplayName: "С:"
+		DisplayName: "С",
+		ShortDisplayName: "С"
 	},
 	{
 		Value: "Spawns",
-		DisplayName: "С:",
-		ShortDisplayName: "С:"
+		DisplayName: "С",
+		ShortDisplayName: "С"
 	},
 	{
 		Value: "Scores",
-		DisplayName: "О:",
-		ShortDisplayName: "О:"
+		DisplayName: "О",
+		ShortDisplayName: "О"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
@@ -142,8 +142,8 @@ mainTimer.OnTimer.Add(function() {
 	case GameStateValue:
 		SetEndOfMatchMode();
 		break;
-	case EndOfMatchStateValue:
-		SetMockMode();
+	case SetEndOfMatchModeStateValue:
+		RestartGame();
 		break;
 	}
 });
