@@ -8,7 +8,6 @@ var GameModeTime = 4;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
 var MockModeTime = 21;
-var GameRestartGameTime = 6;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -16,7 +15,6 @@ var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 var MockModeStateValue = "MockMode";
-var GameRestartGameStateValue = "RestartGame";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
@@ -237,9 +235,7 @@ function start_vote() {
 	}, MapRotation ? 4 : 0);
 }
 function RestartGame() {
-      stateProp.Value = GameRestartGameStateValue;
 	Game.RestartGame();
-	mainTimer.Restart(GameRestartGameTime);
 }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
