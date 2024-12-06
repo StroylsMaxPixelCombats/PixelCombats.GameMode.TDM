@@ -7,7 +7,7 @@ var BuildBaseTime = 31;
 var GameModeTime = 4;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
-var OnVoteResultTime = 21;
+var MockModeTime = 21;
 var GameRestartGameTime = 6;
 
 // Константы, имён:
@@ -15,8 +15,7 @@ var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
-var VoteStateValue = "Vote";
-var OnVoteResultStateValue = "OnVote";
+var MockModeStateValue = "MockMode";
 var GameRestartGameStateValue = "RestartGame";
 
 // Постоянные - переменные:
@@ -97,14 +96,14 @@ Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
 Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 
 // Делаем игроков, неуязвимыми - после спавна:
-var immortalityTimerName="immortality";
+var immortalityTimerName = "immortality";
 Spawns.GetContext().OnSpawn.Add(function(Player){
-	Player.Properties.Immortality.Value=true;
-	timer=Player.Timers.Get(immortalityTimerName).Restart(5);
+	Player.Properties.Immortality.Value = true;
+	timer = Player.Timers.Get(immortalityTimerName).Restart(5);
 });
 Timers.OnPlayerTimer.Add(function(Timer){
-	if(Timer.Id!=immortalityTimerName) return;
-	Timer.Player.Properties.Immortality.Value=false;
+	if (Timer.Id != immortalityTimerName) return;
+	Timer.Player.Properties.Immortality.Value = false;
 });
 
 // После каждой - смерти игрока, отнимаем одну - смерть, в команде:
