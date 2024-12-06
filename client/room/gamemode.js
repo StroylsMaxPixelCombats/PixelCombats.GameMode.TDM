@@ -226,7 +226,7 @@ function SetEndOfMatchMode() {
 }
 function RestartGame() {
 	Game.RestartGame();
-	mainTimer.Restart(MockModeTime);
+	mainTimer.Restart(Time);
 }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
