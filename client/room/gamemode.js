@@ -6,7 +6,6 @@ var WaitingPlayersTime = 1;
 var BuildBaseTime = 31;
 var GameModeTime = 4;
 var EndOfMatchTime = 11;
-var VoteTime = 21;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
