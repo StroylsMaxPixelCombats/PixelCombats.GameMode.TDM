@@ -160,7 +160,7 @@ SetWaitingMode();
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
-	Spawns.GetContext().Enable = false;
+	Spawns.GetContext().Enable = true;
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
