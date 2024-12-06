@@ -7,7 +7,6 @@ var BuildBaseTime = 31;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
-var MockModeTime = 21;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -89,12 +88,9 @@ Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
 // Задаём, зайти игроку - в команду:
-Teams.OnRequestJoinTeam.Add(function(Player,Team) {
-});
+Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
 // Задаём, заспавнится игроку - в команду: 
-Teams.OnPlayerChangeTeam.Add(function(Player){
-	Player.Spawns.Spawn();
-});
+Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 
 // Делаем игроков, неуязвимыми - после спавна:
 var immortalityTimerName="immortality";
