@@ -103,7 +103,10 @@ Spawns.GetContext().OnSpawn.Add(function(Player){
 });
 Timers.OnPlayerTimer.Add(function(Timer){
 	if (Timer.Id != immortalityTimerName) return;
+       if (stateProp.Value == MockModeStateValue) {
 	Timer.Player.Properties.Immortality.Value = false;
+	return;
+       }
 });
 
 // После каждой - смерти игрока, отнимаем одну - смерть, в команде:
@@ -120,12 +123,16 @@ Properties.OnTeamProperty.Add(function(context, value) {
 
 // Счётчик - спавнов:
 Spawns.OnSpawn.Add(function(Player) {
+if (stateProp.Value == MockModeStateValue) return;
 	++Player.Properties.Spawns.Value;
 });
 // Счётчик - смертей:
 Damage.OnDeath.Add(function(Player) {
-	++Player.Properties.Deaths.Value;
+  ++Player.Properties.Deaths.Value;
+if (GameMode.Parameters.GetBool("AvtoSpawn")) {
+ Player.Spawns.Spawn();
 });
+  }
 // Счётчик - убийствов:
 Damage.OnKill.Add(function(Player, Killed) {
 	if (Killed.Team != null && Killed.Team != Player.Team) {
@@ -147,10 +154,10 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		RestartGame();
+		SetMockMode();
 		break;
-	case RestartGameStateValue:
-	       OnVoteResult();
+	case  MockModeStateValue:
+	       start_vote();
 		break;
 	}
 });
