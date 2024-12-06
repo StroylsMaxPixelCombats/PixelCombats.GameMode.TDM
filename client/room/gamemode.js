@@ -7,14 +7,12 @@ var BuildBaseTime = 31;
 var GameModeTime = 4;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
-var MockModeTime = 21;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
-var MockModeStateValue = "MockMode";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
@@ -119,7 +117,6 @@ Properties.OnTeamProperty.Add(function(context, value) {
 
 // Счётчик - спавнов:
 Spawns.OnSpawn.Add(function(Player) {
-if (stateProp.Value == MockModeStateValue) return;
 	++Player.Properties.Spawns.Value;
 });
 // Счётчик - смертей:
@@ -148,9 +145,6 @@ mainTimer.OnTimer.Add(function() {
 		break;
 	case EndOfMatchStateValue:
 		SetMockMode();
-		break;
-	case  MockModeStateValue:
-	       start_vote();
 		break;
 	}
 });
@@ -213,21 +207,6 @@ function SetEndOfMatchMode() {
 	Game.GameOver(LeaderBoard.GetTeams());
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
-}
-function OnVoteResult(Value) {
-	stateProp.Value = OnVoteResultStateValue;
-       mainTimer.Restart(OnVoteResultTime); 
-	if (Value.Result === null) return;
-	NewGame.RestartGame(Value.Result);
-}
-NewGameVote.OnResult.Add(OnVoteResult); // вынесено из функции, которая выполняется только на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза и появилось 2 подписки
-function start_vote() {
-       stateProp.Value = VoteStateValue;
-	mainTimer.Restart(VoteTime);
-	NewGameVote.Start({
-		Variants: [{ MapId: 0 }],
-		Timer: VoteTime
-	}, MapRotation ? 4 : 0);
 }
 function RestartGame() {
 	Game.RestartGame();
