@@ -2,7 +2,7 @@ import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
 	
 // Константы:
-var WaitingPlayersTime = 1;
+var WaitingPlayersTime = 2;
 var BuildBaseTime = 31;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
@@ -154,7 +154,7 @@ SetWaitingMode();
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
-	Spawns.GetContext().Enable = false;
+	Spawns.Enable = false;
 	mainTimer.Restart(WaitingPlayersTime);
 }
 
