@@ -153,7 +153,6 @@ mainTimer.OnTimer.Add(function() {
 	case RestartGameStateValue:
 	       OnVoteResult();
 		break;
-	case 
 	}
 });
 
@@ -223,7 +222,6 @@ function OnVoteResult(Value) {
 	NewGame.RestartGame(Value.Result);
 }
 NewGameVote.OnResult.Add(OnVoteResult); // вынесено из функции, которая выполняется только на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза и появилось 2 подписки
-
 function start_vote() {
        stateProp.Value = VoteStateValue;
 	mainTimer.Restart(VoteTime);
