@@ -4,7 +4,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 // Константы:
 var WaitingPlayersTime = 1;
 var BuildBaseTime = 31;
-var GameModeTime = 601;
+var GameModeTime = 4;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
 var GameRestartGameTime = 6;
