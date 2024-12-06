@@ -7,6 +7,7 @@ var BuildBaseTime = 31;
 var GameModeTime = 4;
 var EndOfMatchTime = 11;
 var VoteTime = 21;
+var OnVoteResultTime = 21;
 var GameRestartGameTime = 6;
 
 // Константы, имён:
@@ -14,6 +15,8 @@ var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
+var VoteStateValue = "Vote";
+var OnVoteResultStateValue = "OnVote";
 var GameRestartGameStateValue = "RestartGame";
 
 // Постоянные - переменные:
@@ -148,8 +151,9 @@ mainTimer.OnTimer.Add(function() {
 		RestartGame();
 		break;
 	case RestartGameStateValue:
-	       start_vote();
+	       OnVoteResult();
 		break;
+	case 
 	}
 });
 
@@ -213,16 +217,20 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Despawn();
 }
 function OnVoteResult(Value) {
+	stateProp.Value = OnVoteResultStateValue;
+       mainTimer.Restart(OnVoteResultTime); 
 	if (Value.Result === null) return;
 	NewGame.RestartGame(Value.Result);
 }
 NewGameVote.OnResult.Add(OnVoteResult); // вынесено из функции, которая выполняется только на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза и появилось 2 подписки
 
 function start_vote() {
+       stateProp.Value = VoteStateValue;
+	mainTimer.Restart(VoteTime);
 	NewGameVote.Start({
 		Variants: [{ MapId: 0 }],
 		Timer: VoteTime
-	}, MapRotation ? 3 : 0);
+	}, MapRotation ? 4 : 0);
 }
 function RestartGame() {
       stateProp.Value = GameRestartGameStateValue;
