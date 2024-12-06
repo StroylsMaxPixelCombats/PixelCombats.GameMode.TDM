@@ -94,12 +94,11 @@ Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 var immortalityTimerName="immortality";
 Spawns.GetContext().OnSpawn.Add(function(Player){
 	Player.Properties.Immortality.Value=true;
-	timer=Player.Timers.Get(immortalityTimerName).Restart(5);
+	timer=Player.Timers.Get(immortalityTimerName).Restart(6);
 });
 Timers.OnPlayerTimer.Add(function(Timer){
-	if (Timer.Id!=immortalityTimerName) return;
+	if(Timer.Id!=immortalityTimerName) return;
 	Timer.Player.Properties.Immortality.Value=false;
-       }
 });
 
 // После каждой - смерти игрока, отнимаем одну - смерть, в команде:
