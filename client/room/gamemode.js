@@ -35,8 +35,8 @@ Teams.Add("Blue", "Teams/Blue", new Color(0, 0, 1, 0));
 Teams.Add("Red", "Teams/Red", new Color(1, 0, 0, 0));
 var BlueTeam = Teams.Get("Blue");
 var RedTeam = Teams.Get("Red");
-BlueTeam.Spawns.SpawnPointsGroups.Add(1);
-RedTeam.Spawns.SpawnPointsGroups.Add(2);
+BlueTeam.Spawns.SpawnPointsGroups.Add(2);
+RedTeam.Spawns.SpawnPointsGroups.Add(1);
 BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
@@ -89,7 +89,7 @@ Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 Teams.OnRequestJoinTeam.Add(function(Player,Team){
   if (GameMode.Parameters.GetBool("Blocks29")) {
 Player.contextedProperties.StartBlocksCount.Value = 30;
-Player.contextedProperties.StartGrenadeCount.Value = 2;
+Player.contextedProperties.StartGrenadesCount.Value = 2;
   }
 });
 // Задаём, зайти игроку - в команду:
