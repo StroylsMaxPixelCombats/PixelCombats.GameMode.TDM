@@ -87,8 +87,10 @@ Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
 // Параметр, который даёт 29 блоков:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){
-if (GameMode.Parameters.GetBool("Blocks29")) {
-	
+  if (GameMode.Parameters.GetBool("Blocks29")) {
+Player.contextedProperties.StartBlocksCount.Value = 29;
+  }
+});
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
 // Задаём, заспавнится игроку - в команду: 
