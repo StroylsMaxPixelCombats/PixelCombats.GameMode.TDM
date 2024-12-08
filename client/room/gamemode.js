@@ -2,7 +2,7 @@ import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
 	
 // Константы:
-var WaitingPlayersTime = 2;
+var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
