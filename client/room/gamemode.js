@@ -217,7 +217,6 @@ NewGameVote.OnResult.Add(function(v) {
 	if (v.Result === null) return;
 	NewGame.RestartGame(v.Result);
 });
-
 function SetVoteTime() {
         stateProp.Value = 'Vote';
 	NewGameVote.Start({
