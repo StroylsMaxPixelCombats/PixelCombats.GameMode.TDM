@@ -85,6 +85,10 @@ LeaderBoard.PlayersWeightGetter.Set(function(Player) {
 Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
+// Параметр, который даёт 29 блоков:
+Teams.OnRequestJoinTeam.Add(function(Player,Team){
+if (GameMode.Parameters.GetBool("Blocks29")) {
+	
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
 // Задаём, заспавнится игроку - в команду: 
