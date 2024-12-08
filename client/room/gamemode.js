@@ -1,5 +1,5 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
 	
 // Константы:
 var WaitingPlayersTime = 2;
@@ -148,7 +148,7 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case SetEndOfMatchModeStateValue:
-		RestartGame();
+		SetVoteTime();
 		break;
 	}
 });
@@ -213,8 +213,17 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
 }
-function RestartGame() {
-	Game.RestartGame();
+NewGameVote.OnResult.Add(function(v) {
+	if (v.Result === null) return;
+	NewGame.RestartGame(v.Result);
+});
+
+function SetVoteTime() {
+        stateProp.Value = 'Vote';
+	NewGameVote.Start({
+		Variants: [{ MapId: 0 }],
+		Timer: 20
+	}, 3);
 }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
