@@ -89,7 +89,7 @@ Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 Teams.OnRequestJoinTeam.Add(function(Player,Team){
   if (GameMode.Parameters.GetBool("Blocks29")) {
 Player.contextedProperties.StartBlocksCount.Value = 30;
-Player.contextedProperties.GrenadeCount.Value = 2;
+Player.contextedProperties.StartGrenadeCount.Value = 2;
   }
 });
 // Задаём, зайти игроку - в команду:
