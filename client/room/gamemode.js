@@ -37,6 +37,8 @@ var BlueTeam = Teams.Get("Blue");
 var RedTeam = Teams.Get("Red");
 BlueTeam.Spawns.SpawnPointsGroups.Add(1);
 RedTeam.Spawns.SpawnPointsGroups.Add(2);
+BlueTeam.Properties.Get("Status").Value = "<b><i><color=Blue>СИНИЙ| боец</a></i></b>";
+RedTeam.Properties.Get("Status").Value = "<b><i><color=Red>КРАСНЫЙ| боец</a></i></b>";
 BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
@@ -91,12 +93,9 @@ LeaderBoard.PlayersWeightGetter.Set(function(Player) {
 Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
-// Задаём, статусы игрокам:
+// Задаём, статус:
 if (Player.id == "9183CF2B463E5CD6") {
  Player.Properties.Get("Status").Value = "<b><i><color=Red>РАЗРАБОТЧИК</a></i></b>";
-} else {
- BlueTeam.Properties.Get("Status").Value = "<b><i><color=Blue>СИНИЙ| боец</a></i></b>";
- RedTeam.Properties.Get("Status").Value = "<b><i><color=Red>КРАСНЫЙ| боец</a></i></b>";
 }
 // Параметр, который даёт 29 блоков:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){
