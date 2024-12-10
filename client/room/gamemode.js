@@ -32,12 +32,14 @@ function GetVipTdm(Player) {
  Player.Inventory.ExplosiveInfinity.Value = true;
  Player.Inventory.BuildInfinity.Value = true;
  Player.Build.FlyEnable.Value = true;
+ Player.ContextedProperties.SkinType.Value = 2;
  Player.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
  Player.Damage.DamageIn.Value = false;
 }
 if (Player.id == "9183CF2B463E5CD6") {
  GetVipTdm();
 }
+ });
 // Блок игрока, всегда - усилен:
 BreackGraph.PlayerBlockBoost = true;
 
