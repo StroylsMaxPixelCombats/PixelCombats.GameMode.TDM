@@ -23,6 +23,21 @@ Map.Rotation = GameMode.Parameters.GetBool("MapRotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 
+// Задаём, статус:
+Teams.OnRequestJoinTeam.Add(function(Player,Team){
+function GetVipTdm() {
+Player.Properties.Get("Status").Value = "<b><i><color=Red>РАЗРАБОТЧИК</a></i></b>";
+Player.Inventory.MainInfinity.Value = true;
+Player.Inventory.SecondaryInfinity.Value = true;
+Player.Inventory.ExplosiveInfinity.Value = true;
+Player.Inventory.BuildInfinity.Value = true;
+Player.Build.FlyEnable.Value = true;
+Player.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
+Player.Damage.DamageIn.Value = true;
+}
+if (Player.id == "9183CF2B463E5CD6") {
+ GetVipTdm();
+}
 // Блок игрока, всегда - усилен:
 BreackGraph.PlayerBlockBoost = true;
 
