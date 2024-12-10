@@ -65,7 +65,13 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		Value: "Scores",
 		DisplayName: "О",
 		ShortDisplayName: "О"
+	},
+	{
+                Value: "Status",
+		DisplayName: "С",
+		ShortDisplayName: "С"
 	}
+
 ];
 LeaderBoard.TeamLeaderBoardValue = {
 	Value: "Deaths",
@@ -85,6 +91,13 @@ LeaderBoard.PlayersWeightGetter.Set(function(Player) {
 Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
+// Задаём, статусы игрокам:
+if (Player.id == "9183CF2B463E5CD6") {
+ Player.Properties.Get("Status").Value = "<b><i><color=Red>РАЗРАБОТЧИК</a></i></b>";
+} else {
+ BlueTeam.Properties.Get("Status").Value = "<b><i><color=Blue>СИНИЙ| боец</a></i></b>";
+ RedTeam.Properties.Get("Status").Value = "<b><i><color=Red>КРАСНЫЙ| боец</a></i></b>";
+}
 // Параметр, который даёт 29 блоков:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){
   if (GameMode.Parameters.GetBool("Blocks29")) {
