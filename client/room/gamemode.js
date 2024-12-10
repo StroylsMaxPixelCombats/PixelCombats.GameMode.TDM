@@ -40,6 +40,7 @@ if (Player.id == "9183CF2B463E5CD6") {
  GetVipTdm();
 }
  });
+
 // Блок игрока, всегда - усилен:
 BreackGraph.PlayerBlockBoost = true;
 
@@ -224,7 +225,7 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-	Spawns.GetContext().Spawn();
+        Spawns.GetContext().Spawn();
 	SpawnTeams();
 }	
 function SetEndOfMatchMode() {
