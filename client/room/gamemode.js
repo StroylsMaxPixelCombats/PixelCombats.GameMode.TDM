@@ -33,7 +33,7 @@ function GetVipTdm(Player) {
  Player.Inventory.BuildInfinity.Value = true;
  Player.Build.FlyEnable.Value = true;
  Player.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
- Player.Damage.DamageIn.Value = true;
+ Player.Damage.DamageIn.Value = false;
 }
 if (Player.id == "9183CF2B463E5CD6") {
  GetVipTdm();
