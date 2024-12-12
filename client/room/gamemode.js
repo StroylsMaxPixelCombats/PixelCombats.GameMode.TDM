@@ -207,7 +207,7 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-        Spawns.GetContext().DespawnTime.Value = 12;
+        Spawns.GetContext().Spawn();
 	SpawnTeams();
 }	
 function SetEndOfMatchMode() {
