@@ -1,5 +1,5 @@
 {
-  "Name": "TDM",
+  "Name": "TДМ",
   "Description": "Team Death Match. Битва двух команд",
   "StartClientVersion": 334,
   "MapFilter": {
@@ -21,6 +21,10 @@
         "Name": "MapRotation",
         "DisplayName": "СМЕНА КАРТ",
         "Default": true
+      },
+      {
+        "Name": "MapLoadRandomMap",
+        "DisplayName": "РАНДОМНАЯ КАРТА",
       },
       {
         "Name": "OnlyKnives",
