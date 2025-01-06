@@ -4,7 +4,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 // Константы:
 var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
-var GameModeTime = 2;
+var GameModeTime = 601;
 var EndOfMatchTime = 11;
 
 // Константы, имён:
@@ -141,7 +141,7 @@ mainTimer.OnTimer.Add(function() {
 	case GameStateValue:
 		SetEndOfMatchMode();
 		break;
-	case SetEndOfMatchModeStateValue:
+	case EndOfMatchStateValue:
 		RestartGame();
 		break;
 	}
@@ -174,8 +174,8 @@ function SetBuildMode()
 	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
-function SetGameMode() 
-{
+function SetGameMode() {
+	
 	stateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
 
@@ -195,8 +195,6 @@ function SetGameMode()
 	}
 
 	mainTimer.Restart(GameModeTime);
-        Spawns.GetContext().Spawn();
-	SpawnTeams();
 }	
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
