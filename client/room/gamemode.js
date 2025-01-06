@@ -4,7 +4,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 // Константы:
 var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
-var GameModeTime = 601;
+var GameModeTime = 1;
 var EndOfMatchTime = 11;
 
 // Константы, имён:
@@ -195,6 +195,7 @@ function SetGameMode() {
 	}
 
 	mainTimer.Restart(GameModeTime);
+	SpawnsTeams();
 }	
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
