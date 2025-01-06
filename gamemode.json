@@ -23,10 +23,6 @@
         "Default": true
       },
       {
-        "Name": "MapLoadRandomMap",
-        "DisplayName": "РАНДОМНАЯ КАРТА ПОСЛЕ СМЕНЫ КАРТЫ",
-      },
-      {
         "Name": "OnlyKnives",
         "DisplayName": "БОЙ НА НОЖАХ"
       },
