@@ -1,5 +1,5 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
 
 // Константы:
 var WaitingPlayersTime = 6;
@@ -49,30 +49,24 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
 		Value: "Kills",
-		DisplayName: "У",
-		ShortDisplayName: "У"
+		DisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>",
+		ShortDisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>"
 	},
 	{
 		Value: "Deaths",
-		DisplayName: "С",
-		ShortDisplayName: "С"
+		DisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>",
+		ShortDisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>"
 	},
 	{
 		Value: "Spawns",
-		DisplayName: "С",
-		ShortDisplayName: "С"
+		DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>",
+		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>"
 	},
 	{
 		Value: "Scores",
-		DisplayName: "О",
-		ShortDisplayName: "О"
-	},
-	{
-                Value: "Status",
-		DisplayName: "С",
-		ShortDisplayName: "С"
+		DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>",
+		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>"
 	}
-
 ];
 LeaderBoard.TeamLeaderBoardValue = {
 	Value: "Deaths",
