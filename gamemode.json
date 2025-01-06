@@ -23,6 +23,10 @@
         "Default": true
       },
       {
+        "Name": "MapLoadRandomMap",
+        "DisplayName": "РАНДОМНАЯ КАРТА ПОСЛЕ СМЕНЫ КАРТЫ",
+      },
+      {
         "Name": "OnlyKnives",
         "DisplayName": "БОЙ НА НОЖАХ"
       },
@@ -33,10 +37,6 @@
       {
         "Name": "LoosenBlocks",
         "DisplayName": "СЛАБЫЕ БЛОКИ"
-      },
-      {
-        "Name": "Blocks29",
-        "DisplayName": "У ИГРОКА 29 БЛОКОВ",
       },
       {
         "Name": "FriendlyFire",
