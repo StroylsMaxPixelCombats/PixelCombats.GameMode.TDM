@@ -153,7 +153,7 @@ SetWaitingMode();
 // Состояние, игры:
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
-	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
+	Ui.GetContext().Hint.Value = "<b>Ожидание, игроков...</b>";
 	Spawns.GetContext().Enable = false;
 	mainTimer.Restart(WaitingPlayersTime);
 }
@@ -161,7 +161,7 @@ function SetWaitingMode() {
 function SetBuildMode() 
 {
 	stateProp.Value = BuildModeStateValue;
-	Ui.GetContext().Hint.Value = "!Застраивайте базу - и атакуйте, врагов!";
+	Ui.GetContext().Hint.Value = "<b>!Застраивайте базу - и атакуйте, врагов!</b>";
 	var inventory = Inventory.GetContext();
 	inventory.Main.Value = false;
 	inventory.Secondary.Value = false;
@@ -177,7 +177,7 @@ function SetBuildMode()
 function SetGameMode() {
 	
 	stateProp.Value = GameStateValue;
-	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
+	Ui.GetContext().Hint.Value = "<b>!Атакуйте, врагов!</b>";
 
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
@@ -199,7 +199,7 @@ function SetGameMode() {
 }	
 function SetEndOfMatchMode() {
 	stateProp.Value = EndOfMatchStateValue;
-	Ui.GetContext().Hint.Value = "!Конец, матча!";
+	Ui.GetContext().Hint.Value = "<b>!Конец, матча!</b>";
 
 	mainTimer.Restart(EndOfMatchTime);
 	Game.GameOver(LeaderBoard.GetTeams());
