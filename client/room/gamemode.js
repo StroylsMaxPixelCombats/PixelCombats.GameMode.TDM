@@ -4,7 +4,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 // Константы:
 var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
-var GameModeTime = 1;
+var GameModeTime = 601;
 var EndOfMatchTime = 11;
 
 // Константы, имён:
@@ -153,7 +153,7 @@ SetWaitingMode();
 // Состояние, игры:
 function SetWaitingMode() {
 	stateProp.Value = WaitingStateValue;
-	Ui.GetContext().Hint.Value = "<b>Ожидание, игроков...</b>";
+	Ui.GetContext().Hint.Value = `<b> + 'Ожидание, игроков...' + </b>`;
 	Spawns.GetContext().Enable = false;
 	mainTimer.Restart(WaitingPlayersTime);
 }
