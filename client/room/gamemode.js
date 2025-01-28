@@ -210,6 +210,7 @@ function SetEndOfMatchMode() {
 
 function RLoadRandomMap() {
  Map.LoadRandomMap();
+Game.RestartGame();
 }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
