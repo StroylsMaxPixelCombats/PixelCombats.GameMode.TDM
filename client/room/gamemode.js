@@ -145,7 +145,7 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		RestartGame();
+		Vote();
 		break;
 	}
 });
