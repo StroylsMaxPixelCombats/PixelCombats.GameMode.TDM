@@ -229,7 +229,7 @@ function Vote() {
 function RestartGame() {
  Game.RestartGame();
 if (GameMode.Parameters.GetBool("SmenaMap")) {
-  Map.LoadRandomMap();
+  Map.Rotation = true;
   }
 }
 function SpawnTeams() {
