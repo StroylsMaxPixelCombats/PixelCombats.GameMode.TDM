@@ -18,13 +18,9 @@
   "Parameters": {
     "Bool": [
       {
-        "Name": "SmenaMap",
-        "DisplayName": "СМЕНА КАРТ",
+        "Name": "MapPotation",
+        "DisplayName": "ГОЛОСОВАНИЕ/СМЕНА КАРТ",
         "Default": true
-      },
-      {
-        "Name": "Golosowanie",
-        "DisplayName": "ГОЛОСОВАНИЕ",
       },
       {
         "Name": "OnlyKnives",
