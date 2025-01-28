@@ -23,6 +23,10 @@
         "Default": true
       },
       {
+        "Name": "RandomMap",
+        "DisplayName": "РАНДОМНАЯ ПЕРЕЗАГРУЗКА КАРТЫ"
+      },
+      {
         "Name": "OnlyKnives",
         "DisplayName": "БОЙ НА НОЖАХ"
       },
