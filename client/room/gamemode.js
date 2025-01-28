@@ -12,6 +12,7 @@ var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
+var VoteStateValue = "Vote";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
@@ -143,6 +144,9 @@ mainTimer.OnTimer.Add(function() {
 		break;
 	case EndOfMatchStateValue:
 		RestartGame();
+	     if (GameMode.Parameters.GetBool("Golosowanie")) {
+		Vote();
+	     }
 		break;
 	}
 });
@@ -206,6 +210,22 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
 }
+if (GameMode.Parameters.GetBool("Golosowanie")) {
+function OnVoteResult(Value) {
+	if (Value.Result === null) return;
+	NewGame.RestartGame(Value.Result);
+}
+NewGameVote.OnResult.Add(OnVoteResult);
+
+function Vote() {
+   stateProp.Value = VoteStateValue;
+	NewGameVote.Start({
+		Variants: [{ MapId: 0 }],
+		Timer: 20
+	 }, Golosowanie ? 3 : 0);
+    }
+}
+
 function RestartGame() {
  Game.RestartGame();
 if (GameMode.Parameters.GetBool("SmenaMap")) {
