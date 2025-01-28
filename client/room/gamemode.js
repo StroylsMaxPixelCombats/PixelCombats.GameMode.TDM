@@ -143,10 +143,7 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		RestartGame();
-	     if (GameMode.Parameters.GetBool("Golosowanie")) {
-		Vote();
-	     }
+		RLoadRandomMap();
 		break;
 	}
 });
@@ -210,30 +207,10 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
 }
-if (GameMode.Parameters.GetBool("Golosowanie")) {
-function OnVoteResult(Value) {
-	if (Value.Result === null) return;
-	NewGame.RestartGame(Value.Result);
-}
-NewGameVote.OnResult.Add(OnVoteResult);
 
-function Vote() {
-   stateProp.Value = VoteStateValue;
-	NewGameVote.Start({
-		Variants: [{ MapId: 0 }],
-		Timer: 20
-	 }, Golosowanie ? 3 : 0);
-    }
+function RLoadRandomMap() {
+ Map.LoadRandomMap();
 }
-
-function RestartGame() {
- Game.RestartGame();
-}
-if (GameMode.Parameters.GetBool("SmenaMap")) {
-function RestartGame() {
-  Map.LoadRandomMap();
-     }
-  }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
 	 Spawns.GetContext().Spawn();	
