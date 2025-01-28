@@ -31,7 +31,6 @@ BreackGraph.PlayerBlockBoost = true;
 // Параметры, игры:
 Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
-Map.LoadRandomMap();
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Стандартные, команды:
 Teams.Add("Blue", "<b><size=30><color=#0d177c>ß</color><color=#03088c>l</color><color=#0607b0>ᴜ</color><color=#1621ae>E</color></size></b>", new Color(0, 0, 1, 0));
