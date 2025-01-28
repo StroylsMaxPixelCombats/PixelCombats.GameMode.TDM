@@ -19,7 +19,7 @@ var stateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
-Map.Rotation = GameMode.Parameters.GetBool("MapRotation");
+Map.Rotation = GameMode.Parameters.GetBool("Golosowanie");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 
@@ -208,6 +208,9 @@ function SetEndOfMatchMode() {
 }
 function RestartGame() {
  Game.RestartGame();
+if (GameMode.Parameters.GetBool("SmenaMap")) {
+  Map.LoadRandomMap();
+  }
 }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
