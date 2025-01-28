@@ -22,6 +22,7 @@ var stateProp = Properties.GetContext().Get("State");
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 Map.Rotation = GameMode.Parameters.GetBool("MapPotation");
+Map.LoadRandomMap = GameMode.Parameters.GetBool("RandomMap");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 
