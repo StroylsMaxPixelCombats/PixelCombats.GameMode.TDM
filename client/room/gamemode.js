@@ -1,11 +1,12 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
 
 // Константы:
 var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
+var VoteTime = 10;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -20,7 +21,7 @@ var stateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
-Map.Rotation = GameMode.Parameters.GetBool("Golosowanie");
+Map.Rotation = GameMode.Parameters.GetBool("MapPotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 
@@ -30,6 +31,7 @@ BreackGraph.PlayerBlockBoost = true;
 // Параметры, игры:
 Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
+Map.LoadRandomMap();
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // Стандартные, команды:
 Teams.Add("Blue", "<b><size=30><color=#0d177c>ß</color><color=#03088c>l</color><color=#0607b0>ᴜ</color><color=#1621ae>E</color></size></b>", new Color(0, 0, 1, 0));
@@ -148,6 +150,13 @@ mainTimer.OnTimer.Add(function() {
 	}
 });
 
+// Часть, голосования - за карту:
+function OnVoteResult(Value) {
+	if (Value.Result === null) return;
+	NewGame.RestartGame(Value.Result);
+}
+NewGameVote.OnResult.Add(OnVoteResult); 
+
 // Задаём, первое игровое - состояние игры:
 SetWaitingMode();
 
@@ -207,9 +216,15 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
 }
-
+function Vote() {
+   stateProp.Value = VoteStateValue;	
+	NewGameVote.Start({
+		Variants: [{ MapId: 0 }],
+		Timer: VoteTime;
+	}, MapRotation ? 3 : 0);
+}
 function RestartGame() {
-Game.RestartGame();
+ Game.RestartGame();
 }
 function SpawnTeams() {
 	var Spawns = Teams.Spawn();
