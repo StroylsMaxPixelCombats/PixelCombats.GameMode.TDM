@@ -256,7 +256,7 @@ function SetVoteStart() {
 	NewGameVote.Start({
 		Variants: [{ MapId: 4 }],
 		Timer: VoteTime
-	}, MapRotation ? 3);
+	}, MapRotation ? 3 : 4 );
 }
 function SpawnTeams() {
   Spawns.GetContext().Spawn();
