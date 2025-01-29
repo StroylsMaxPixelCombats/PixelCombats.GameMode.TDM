@@ -22,6 +22,7 @@ var MockModeStateValue = "MockMode";
 
 // Константы, для имён - с лидерБордами:
 var ScoresLeaderBoard = "Scores";
+var DeathsLeaderBoard = "Deaths";
 var KillsLeaderBoard = "Kills";
 
 // Постоянные - переменные:
@@ -53,9 +54,9 @@ BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
 // Максимальные - смерти, команд:
-var MaxDeaths = Players.MaxCount * 5;
-Teams.Get("Red").Properties.Get("Deaths").Value = MaxDeaths;
-Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
+var MaxDeathsLeaderBoard = Players.MaxCount * 5;
+Teams.Get("Red").Properties.Get("DeathsLeaderBoard").Value = MaxDeathsLeaderBoard;
+Teams.Get("Blue").Properties.Get("DeathsLeaderBoard").Value = MaxDeathsLeaderBoard;
 // Стандартные - лидерБорды:
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
@@ -64,7 +65,7 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>"
 	},
 	{
-		Value: "Deaths",
+		Value: "DeathsLeaderBoard",
 		DisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>"
 	},
@@ -80,13 +81,13 @@ LeaderBoard.PlayerLeaderBoardValues = [
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
-	Value: "Deaths",
+	Value: "DeathsLeaderBoard",
         DisplayName: "Statistics\Deaths",
 	ShortDisplayName: "Statistics\Deaths"
 };
 // Вес - команды, в лидерБорде:
 LeaderBoard.TeamWeightGetter.Set(function(Team) {
-	return Team.Properties.Get("Deaths").Value;
+	return Team.Properties.Get("DeathsLeaderBoard").Value;
 });
 // Вес - игрока, в лидерБорде:
 LeaderBoard.PlayersWeightGetter.Set(function(Player) {
@@ -94,8 +95,8 @@ LeaderBoard.PlayersWeightGetter.Set(function(Player) {
 });
 
 // Задаём, что выводить, в табе:
-Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
-Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
+Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "DeathsLeaderBoard" };
+Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "DeathsLeaderBoard" };
 
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
@@ -119,13 +120,13 @@ Timers.OnPlayerTimer.Add(function(Timer){
 
 // После каждой - смерти игрока, отнимаем одну - смерть, в команде:
 Properties.OnPlayerProperty.Add(function(Context, Value) {
-	if (Value.Name !== "Deaths") return;
+	if (Value.Name !== "DeathsLeaderBoard") return;
 	if (Context.Player.Team == null) return;
-	Context.Player.Team.Properties.Get("Deaths").Value--;
+	Context.Player.Team.Properties.Get("DeathsLeaderBoard").Value--;
 });
 // Если у игрока - занулилились смерти, то завершаем игру:
 Properties.OnTeamProperty.Add(function(Context, Value) {
-	if (Value.Name !== "Deaths") return;
+	if (Value.Name !== "DeathsLeaderBoard") return;
 	if (Value.Value <= 0) SetEndOfMatchMode();
 });
 
