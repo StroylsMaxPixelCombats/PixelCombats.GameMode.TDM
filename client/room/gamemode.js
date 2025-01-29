@@ -22,9 +22,7 @@ var MockModeStateValue = "MockMode";
 
 // Константы, для имён - с лидерБордами:
 var ScoresLeaderBoard = "Scores";
-var DeathsLeaderBoard = "Deaths";
 var KillsLeaderBoard = "Kills";
-var SpawnsLeaderBoard = "Spawns";
 
 // Постоянные - переменные:
 var MainTimer = Timers.GetContext().Get("Main");
@@ -55,9 +53,9 @@ BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
 // Максимальные - смерти, команд:
-var MaxDeathsLeaderBoard = Players.MaxCount * 5;
-Teams.Get("Red").Properties.Get("DeathsLeaderBoard").Value = MaxDeathsLeaderBoard;
-Teams.Get("Blue").Properties.Get("DeathsLeaderBoard").Value = MaxDeathsLeaderBoard;
+var MaxDeaths = Players.MaxCount * 5;
+Teams.Get("Red").Properties.Get("Deaths").Value = MaxDeaths;
+Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 // Стандартные - лидерБорды:
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
@@ -66,12 +64,12 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>"
 	},
 	{
-		Value: "DeathsLeaderBoard",
+		Value: "Deaths",
 		DisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>"
 	},
 	{
-		Value: "SpawnsLeaderBoard",
+		Value: "Spawns",
 		DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>"
 	},
@@ -82,22 +80,26 @@ LeaderBoard.PlayerLeaderBoardValues = [
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
-	Value: "DeathsLeaderBoard",
+	Value: "Deaths",
         DisplayName: "Statistics\Deaths",
 	ShortDisplayName: "Statistics\Deaths"
 };
 // Вес - команды, в лидерБорде:
 LeaderBoard.TeamWeightGetter.Set(function(Team) {
-	return Team.Properties.Get("DeathsLeaderBoard").Value;
+	return Team.Properties.Get("Deaths").Value;
 });
 // Вес - игрока, в лидерБорде:
 LeaderBoard.PlayersWeightGetter.Set(function(Player) {
 	return Player.Properties.Get("KillsLeaderBoard").Value;
 });
 
+// Обнуляем (изначально), очки игрокам - командам: 
+ RedTeam.Properties.Get("ScoresLeaderBoard").Value = 0;
+ BlueTeam.Properties.Get("ScoresLeaderBoard").Value = 0;
+
 // Задаём, что выводить, в табе:
-Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "DeathsLeaderBoard" };
-Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "DeathsLeaderBoard" };
+Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
+Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
@@ -121,9 +123,9 @@ Timers.OnPlayerTimer.Add(function(Timer){
 
 // После каждой - смерти игрока, отнимаем одну - смерть, в команде:
 Properties.OnPlayerProperty.Add(function(Context, Value) {
-	if (Value.Name !== "DeathsLeaderBoard") return;
+	if (Value.Name !== "Deaths") return;
 	if (Context.Player.Team == null) return;
-	Context.Player.Team.Properties.Get("DeathsLeaderBoard").Value--;
+	Context.Player.Team.Properties.Get("Deaths").Value--;
 });
 // Если у игрока - занулилились смерти, то завершаем игру:
 Properties.OnTeamProperty.Add(function(Context, Value) {
@@ -134,7 +136,7 @@ Properties.OnTeamProperty.Add(function(Context, Value) {
 // Счётчик - спавнов:
 Spawns.OnSpawn.Add(function(Player) {
       if (StateProp.Value == MockModeStateValue) return;
-	++Player.Properties.SpawnsLeaderBoard.Value;
+	++Player.Properties.Spawns.Value;
 });
 // Счётчик - смертей:
 Damage.OnDeath.Add(function(Player) {
@@ -142,7 +144,7 @@ Damage.OnDeath.Add(function(Player) {
  Spawns.GetContext(Player).Spawn();
       return;
 }
-  ++Player.Properties.DeathsLeaderBoard.Value;
+  ++Player.Properties.Deaths.Value;
 });
 // Счётчик - убийствов:
 Damage.OnKill.Add(function(Player, Killed) {
