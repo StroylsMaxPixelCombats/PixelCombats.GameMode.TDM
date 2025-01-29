@@ -21,9 +21,9 @@ var stateProp = Properties.GetContext().Get("State");
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
-Map.Potation = false;
+Map.Rotation = false;
  if (GameMode.Parameters.GetBool("MapPotation")) {
-Map.Potation = true;
+Map.Rotation = true;
  }
 
 // Блок игрока, всегда - усилен:
