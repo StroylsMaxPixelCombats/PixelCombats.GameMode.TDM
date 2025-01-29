@@ -26,7 +26,7 @@ var KillsLeaderBoard = "Kills";
 
 // Постоянные - переменные:
 var MainTimer = Timers.GetContext().Get("Main");
-var ScoresTimer = Timers.GetContext().Get("Scores");
+var ScoresTimer = Timers.GetContext().Get("ScoresLeaderBoard");
 var StateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
