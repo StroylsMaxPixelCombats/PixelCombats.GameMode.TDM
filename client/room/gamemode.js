@@ -2,7 +2,7 @@ import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
 	
 // Константы:
-var WaitingPlayersTime = 6;
+var WaitingPlayersTime = 11;
 var BuildBaseTime = 1;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
@@ -94,7 +94,7 @@ Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 var immortalityTimerName = "immortality";
 Spawns.GetContext().OnSpawn.Add(function(Player){
 	Player.Properties.Immortality.Value = true;
-	timer = Player.Timers.Get(immortalityTimerName).Restart(6);
+	Timer = Player.Timers.Get(immortalityTimerName).Restart(6);
 });
 Timers.OnPlayerTimer.Add(function(Timer){
 	if (Timer.Id != immortalityTimerName) return;
