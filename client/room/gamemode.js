@@ -19,9 +19,12 @@ var stateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
-Map.Rotation = GameMode.Parameters.GetBool("MapPotation");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
+Map.Potation = false;
+ if (GameMode.Parameters.GetBool("MapPotation")) {
+Map.Potation = true;
+ }
 
 // Блок игрока, всегда - усилен:
 BreackGraph.PlayerBlockBoost = true;
@@ -30,7 +33,6 @@ BreackGraph.PlayerBlockBoost = true;
 Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
-Map.LoadRandomMap();
 // Стандартные, команды:
 Teams.Add("Blue", "<b><size=30><color=#0d177c>ß</color><color=#03088c>l</color><color=#0607b0>ᴜ</color><color=#1621ae>E</color></size></b>", new Color(0, 0, 1, 0));
 Teams.Add("Red", "<b><size=30><color=#962605>尺</color><color=#9a040c>ᴇ</color><color=#b8110b>D</color></size></b>", new Color(1, 0, 0, 0));
