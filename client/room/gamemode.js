@@ -135,7 +135,6 @@ Properties.OnTeamProperty.Add(function(Context, Value) {
 
 // Счётчик - спавнов:
 Spawns.OnSpawn.Add(function(Player) {
-      if (StateProp.Value == MockModeStateValue) return;
 	++Player.Properties.Spawns.Value;
 });
 // Счётчик - смертей:
