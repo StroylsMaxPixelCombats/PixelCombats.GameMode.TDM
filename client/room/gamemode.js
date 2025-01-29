@@ -214,9 +214,9 @@ function SetEndOfMatchMode() {
 function SetVoteTime() {
         stateProp.Value = 'Vote';
 	NewGameVote.Start({
-		Variants: [{ MapId: 5 }],
+		Variants: [{ MapId: 0 }],
 		Timer: 15
-	}, 3);
+	}, MapRotation ? 3 : 0);
 }
 function RestartGame() {
  Game.RestartGame();
