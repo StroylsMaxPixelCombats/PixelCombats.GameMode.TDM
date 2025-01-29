@@ -207,11 +207,14 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Despawn();
 }
 function RestartGame() {
- Map.LoadRandomMap();
+ Game.RestartGame();
 }
 function SpawnTeams() {
  for (var Team of Teams) {
   Spawns.GetContext(Team).Spawn();
        }
 }
+
+// Запуск, игры:
+Map.LoadRandomMap();
 
