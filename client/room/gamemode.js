@@ -20,13 +20,9 @@ var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 var MockModeStateValue = "MockMode";
 
-// Константы, для имён - с лидерБордами:
-var ScoresLeaderBoard = "Scores";
-var KillsLeaderBoard = "Kills";
-
 // Постоянные - переменные:
 var MainTimer = Timers.GetContext().Get("Main");
-var ScoresTimer = Timers.GetContext().Get("ScoresLeaderBoard");
+var ScoresTimer = Timers.GetContext().Get("Scores");
 var StateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
@@ -59,7 +55,7 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 // Стандартные - лидерБорды:
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
-		Value: "KillsLeaderBoard",
+		Value: "Kills",
 		DisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>"
 	},
@@ -74,7 +70,7 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>"
 	},
 	{
-		Value: "ScoresLeaderBoard",
+		Value: "Scores",
 		DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>"
 	}
@@ -90,12 +86,12 @@ LeaderBoard.TeamWeightGetter.Set(function(Team) {
 });
 // Вес - игрока, в лидерБорде:
 LeaderBoard.PlayersWeightGetter.Set(function(Player) {
-	return Player.Properties.Get("KillsLeaderBoard").Value;
+	return Player.Properties.Get("Kills").Value;
 });
 
 // Обнуляем (изначально), очки игрокам - командам: 
- RedTeam.Properties.Get("ScoresLeaderBoard").Value = 0;
- BlueTeam.Properties.Get("ScoresLeaderBoard").Value = 0;
+ RedTeam.Properties.Get("Scores").Value = 0;
+ BlueTeam.Properties.Get("Scores").Value = 0;
 
 // Задаём, что выводить, в табе:
 Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
@@ -129,7 +125,7 @@ Properties.OnPlayerProperty.Add(function(Context, Value) {
 });
 // Если у игрока - занулилились смерти, то завершаем игру:
 Properties.OnTeamProperty.Add(function(Context, Value) {
-	if (Value.Name !== "DeathsLeaderBoard") return;
+	if (Value.Name !== "Deaths") return;
 	if (Value.Value <= 0) SetEndOfMatchMode();
 });
 
@@ -149,12 +145,12 @@ Damage.OnDeath.Add(function(Player) {
 // Счётчик - убийствов:
 Damage.OnKill.Add(function(Player, Killed) {
 	if (Killed.Team != null && Killed.Team != Player.Team) {
-		++Player.Properties.KillsLeaderBoard.Value;
-		Player.Properties.ScoresLeaderBoard.Value += 100;
+		++Player.Properties.Kills.Value;
+		Player.Properties.Scores.Value += 100;
 		// Добавляем, очки - килла игроку:
-	          Player.Properties.ScoresLeaderBoard.Value += Kill_SCORES;
+	          Player.Properties.Scores.Value += Kill_SCORES;
 		if (StateProp.Value == MockModeStateValue && Player.Team != null) 
-		 Player.Team.Properties.Get("ScoresLeaderBoard").Value;
+		 Player.Team.Properties.Get("Scores").Value;
 	}
 });
 
@@ -162,7 +158,7 @@ Damage.OnKill.Add(function(Player, Killed) {
 ScoresTimer.OnTimer.Add(function() {
  for (var Player of Players.All) {
    if (Player.Team == null) continue;
- Player.Properties.ScoresLeaderBoard.Value += Timer_SCORES;
+ Player.Properties.Scores.Value += Timer_SCORES;
       }
 });
 
