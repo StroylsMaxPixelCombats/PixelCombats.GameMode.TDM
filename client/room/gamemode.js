@@ -8,10 +8,10 @@ var GameModeTime = 2;
 var EndOfMatchTime = 11;
 
 // Константы, очков/килов - с таймерам:
-var Kill_SCORES = 10;
-var Winner_SCORES = 20;
-var Timer_SCORES = 30;
-var TimerInterval_SCORES = 40;
+var Kill_SCORES = 20;
+var Winner_SCORES = 50;
+var Timer_SCORES = 40;
+var TimerInterval_SCORES = 10;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
