@@ -13,6 +13,7 @@ var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
+var VoteStateValue = "Vote";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
@@ -214,6 +215,7 @@ function OnVoteResult(Value) {
 NewGameVote.OnResult.Add(OnVoteResult);
 
 function Vote() {
+      stateProp.Value = VoteStateValue;
 	NewGameVote.Start({
 		Variants: [{ MapId: 0 }],
 		Timer: VoteTime
