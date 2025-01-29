@@ -152,7 +152,7 @@ SetWaitingMode();
 
 // Состояние, игры:
 function SetWaitingMode() {
-	StateProp.Value = "WaitingStateValue";
+	StateProp.Value = WaitingStateValue;
 	Ui.GetContext().Hint.Value = "Ожидание, игроков...";
 	Spawns.GetContext().Enable = false;
 	MainTimer.Restart(WaitingPlayersTime);
@@ -160,7 +160,7 @@ function SetWaitingMode() {
 
 function SetBuildMode() 
 {
-	StateProp.Value = "BuildModeStateValue";
+	StateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "!Застраивайте базу - и разрушайте, базу врагов!";
 	
 	var inventory = Inventory.GetContext();
@@ -176,7 +176,7 @@ function SetBuildMode()
 }
 function SetGameMode() {
 	
-	StateProp.Value = "GameStateValue";
+	StateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
 
 	 var inventory = Inventory.GetContext();
@@ -198,7 +198,7 @@ function SetGameMode() {
 	SpawnsTeams();
 }	
 function SetEndOfMatchMode() {
-        StateProp.Value = "EndOfMatchStateValue";
+        StateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "!Конец, матча!";
 
 	MainTimer.Restart(EndOfMatchTime);
