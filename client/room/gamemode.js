@@ -144,9 +144,6 @@ mainTimer.OnTimer.Add(function() {
 	case EndOfMatchStateValue:
 		RestartGame();
 		break;
-	case RestartGame:
-		LoadRandomMap();
-		break;
 	}
 });
 
@@ -210,9 +207,6 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Despawn();
 }
 function RestartGame() {
- Game.RestartGame();
-}
-function LoadRandomMap() {
  Map.LoadRandomMap();
 }
 function SpawnTeams() {
