@@ -91,14 +91,14 @@ Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
 Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 
 // Делаем игроков, неуязвимыми - после спавна:
-var immortalityTimerName="immortality";
+var immortalityTimerName = "immortality";
 Spawns.GetContext().OnSpawn.Add(function(Player){
-	Player.Properties.Immortality.Value=true;
-	timer=Player.Timers.Get(immortalityTimerName).Restart(6);
+	Player.Properties.Immortality.Value = true;
+	timer = Player.Timers.Get(immortalityTimerName).Restart(6);
 });
 Timers.OnPlayerTimer.Add(function(Timer){
-	if(Timer.Id!=immortalityTimerName) return;
-	Timer.Player.Properties.Immortality.Value=false;
+	if (Timer.Id != immortalityTimerName) return;
+	Timer.Player.Properties.Immortality.Value = false;
 });
 
 // После каждой - смерти игрока, отнимаем одну - смерть, в команде:
