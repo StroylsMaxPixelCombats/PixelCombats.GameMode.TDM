@@ -3,7 +3,7 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 	
 // Константы:
 var WaitingPlayersTime = 6;
-var BuildBaseTime = 31;
+var BuildBaseTime = 1;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
 
