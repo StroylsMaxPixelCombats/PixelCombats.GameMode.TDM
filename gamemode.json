@@ -19,12 +19,8 @@
     "Bool": [
       {
         "Name": "MapPotation",
-        "DisplayName": "ГОЛОСОВАНИЕ/СМЕНА КАРТ",
+        "DisplayName": "СМЕНА КАРТ",
         "Default": true
-      },
-      {
-        "Name": "RandomMap",
-        "DisplayName": "РАНДОМНАЯ ПЕРЕЗАГРУЗКА КАРТЫ"
       },
       {
         "Name": "OnlyKnives",
