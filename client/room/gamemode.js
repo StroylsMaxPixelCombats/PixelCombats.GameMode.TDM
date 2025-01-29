@@ -210,7 +210,4 @@ function RestartGame() {
  Game.RestartGame();
 }
 function SpawnTeams() {
-var Spawn = Teams.All.forEach(Spawn => {
-   Spawns.GetContext("Spawn").Spawn();
-	}
-}
+Spawns.GetContext().Spawn();
