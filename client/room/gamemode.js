@@ -251,9 +251,7 @@ function RestartGame() {
  Game.RestartGame();
 }
 function SpawnTeams() {
- for (var Team of Teams) {
-  Spawns.GetContext("Team").Spawn();
-       }
+  Spawns.GetContext().Spawn();
 }
 
 ScoresTimer.RestartLoop(TimerInterval_SCORES);
