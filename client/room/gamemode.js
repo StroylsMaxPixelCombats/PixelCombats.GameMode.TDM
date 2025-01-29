@@ -164,11 +164,13 @@ ScoresTimer.OnTimer.Add(function() {
       }
 });
 // Функции, голосования:
-function OnVoteResult(Value) {
+if (GameMode.Parameters.GetBool("MapPotation")) {
+ function OnVoteResult(Value) {
  if (Value.Result === null) return;
 NewGame.RestartGame(Value.Result);
  }
 NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции, которая выполняется только - на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза, и появилось - 2 подписки.
+}
 
 // Переключение - игровых, режимов:
 MainTimer.OnTimer.Add(function() {
@@ -182,9 +184,14 @@ MainTimer.OnTimer.Add(function() {
 	case GameStateValue:
 		SetEndOfMatchMode();
 		break;
-	case EndOfMatchStateValue:
+	if (GameMode.Parameters.GetBool("MapPotation")) {		
+	 case EndOfMatchStateValue:
 		VoteStart();
 		break;
+	     }
+	 case EndOfMatchStateValue:
+	        RestartGame();
+	        break;
 	}
 });
 
@@ -251,12 +258,17 @@ function SetEndOfMatchMode() {
 	 for (var WinPlayer of LeaderBoard[0].Team.Players) 
 	 WinPlayer.Properties.ScoresLeaderBoard.Value += Winner_SCORES;
 }
-function SetVoteStart() {
+if (GameMode.Parameters.GetBool("MapPotation")) {
+ function SetVoteStart() {
 	StateProp.Value = VoteStateValue;
 	NewGameVote.Start({
 		Variants: [{ MapId: 4 }],
 		Timer: VoteTime
-	}, MapRotation ? 3 : 4 );
+	}, 3);
+    }
+}
+function RestartGame() {
+ Game.RestartGame();
 }
 function SpawnTeams() {
   Spawns.GetContext().Spawn();
