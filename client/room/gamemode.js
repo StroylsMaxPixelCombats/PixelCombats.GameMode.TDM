@@ -1,5 +1,5 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer } from 'pixel_combats/room';
 
 // Константы:
 var WaitingPlayersTime = 6;
@@ -12,7 +12,6 @@ var WaitingStateValue = "Waiting";
 var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
-var VoteStateValue = "Vote";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
@@ -70,8 +69,8 @@ LeaderBoard.PlayerLeaderBoardValues = [
 ];
 LeaderBoard.TeamLeaderBoardValue = {
 	Value: "Deaths",
-        DisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>",
-	ShortDisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>"
+        DisplayName: "Statistics\Deaths",
+	ShortDisplayName: "Statistics\Deaths"
 };
 // Вес - команды, в лидерБорде:
 LeaderBoard.TeamWeightGetter.Set(function(Team) {
@@ -143,17 +142,10 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		Vote();
+		RestartGame();
 		break;
 	}
 });
-
-// Часть, голосования - за карту:
-function OnVoteResult(Value) {
-	if (Value.Result === null) return;
-	NewGame.RestartGame(Value.Result);
-}
-NewGameVote.OnResult.Add(OnVoteResult); 
 
 // Задаём, первое игровое - состояние игры:
 SetWaitingMode();
@@ -213,14 +205,6 @@ function SetEndOfMatchMode() {
 	Game.GameOver(LeaderBoard.GetTeams());
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
-
-}
-function Vote() {
-   stateProp.Value = VoteStateValue;	
-	NewGameVote.Start({
-		Variants: [{ MapId: 0 }],
-		Timer: 15
-	}, MapRotation ? 3 : 0);
 }
 function RestartGame() {
  Game.RestartGame();
