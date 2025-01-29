@@ -212,7 +212,9 @@ function RestartGame() {
  Game.RestartGame();
 }
 function SpawnTeams() {
- Spawns.GetContext().Spawn();
+var Spawn = Teams.All.forEach(Spawn => {
+   Spawns.GetContext("Spawn").Spawn();
+    }
 }
 
 } catch (e) {
