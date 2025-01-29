@@ -6,6 +6,14 @@ var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
+var MockModeTime = 20;
+
+// Константы, очков:
+var KillScores = 10;
+var WinnerScores = 20;
+var TimerScores = 30;
+var ScoresTimerInterval = 40;
+var ScoresTimerWinner = 50;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -13,9 +21,15 @@ var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 var VoteStateValue = "Vote";
+var MockModeStateValue = "MockMode";
+
+// Константы, для имени - лидерБорда:
+var KillsPropName = "Kills";
+var ScoresPropName = "Scores";
 
 // Постоянные - переменные:
 var mainTimer = Timers.GetContext().Get("Main");
+var scoresTimer = Timers.GetContext().Get("Scores");
 var stateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
@@ -48,7 +62,7 @@ Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 // Стандартные - лидерБорды:
 LeaderBoard.PlayerLeaderBoardValues = [
 	{
-		Value: "Kills",
+		Value: "KillsPropName",
 		DisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>K</color><color=#b65219>i</color><color=#ae4517>l</color><color=#a63815>l</color><color=#9e2b13>s</color></size></b>"
 	},
@@ -63,28 +77,31 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>"
 	},
 	{
-		Value: "Scores",
+		Value: "ScoresPropName",
 		DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>"
 	}
 ];
 LeaderBoard.TeamLeaderBoardValue = {
-	Value: "Deaths",
-	DisplayName: "Statistics\Deaths",
-	ShortDisplayName: "Statistics\Deaths"
+	Value: "ScoresPropName",
+	DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>",
+	ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>c</color><color=#b24b17>o</color><color=#ac4115>r</color><color=#a63713>e</color><color=#a02d11>s</color></size></b>"
 };
 // Вес - команды, в лидерБорде:
 LeaderBoard.TeamWeightGetter.Set(function(Team) {
-	return Team.Properties.Get("Deaths").Value;
+	return Team.Properties.Get("ScoresPropName").Value;
 });
 // Вес - игрока, в лидерБорде:
 LeaderBoard.PlayersWeightGetter.Set(function(Player) {
-	return Player.Properties.Get("Kills").Value;
+	return Player.Properties.Get("ScoresPropName").Value;
 });
+// Отображаем, (изначально) нули - в очках двух, команд:
+RedTeam.Properties.Get("ScoresPropName").Value = 0;
+BlueTeam.Properties.Get("ScoresPropName").Value = 0;
 
 // Задаём, что выводить, в табе:
-Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
-Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
+Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "ScoresPropName" };
+Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "ScoresPropName" };
 
 // Задаём, зайти игроку - в команду:
 Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
@@ -127,6 +144,19 @@ Damage.OnKill.Add(function(Player, Killed) {
 	if (Killed.Team != null && Killed.Team != Player.Team) {
 		++Player.Properties.Kills.Value;
 		Player.Properties.Scores.Value += 100;
+	      // Добавляем очки команде, игроку за любое, действие с киллами:
+	         Player.Properties.Scores.Value += KillScores;
+	        if (scoresProp.Value !== MockModeStateValue && Player.Team !== null) {
+		Player.Team.Properties.Get("ScoresPropName").Value += KillScores;	
+	   }
+	}
+});
+
+// Таймер, за проведённое время, в комнате - выдаём очки:
+scoresTimer.OnTimer.Add(function(Player) {
+ for (var Player of Players.All) {
+  if (Player.Team = null) continue;
+ Player.Properties.Scores.Value += TimerScores;
 	}
 });
 
@@ -206,19 +236,26 @@ function SetGameMode() {
 	SpawnsTeams();
 }	
 function SetEndOfMatchMode() {
-	stateProp.Value = EndOfMatchStateValue;
+       stateProp.Value = EndOfMatchStateValue;
 	Ui.GetContext().Hint.Value = "!Конец, матча!";
+	 for (var WinPlayer of LeaderBoard[0].Team.Players) {
+	  WinPlayers.Properties.Scores.Value = WinnerScores;
+	  WinPlayers.Properties.Scores.Value = ScoresTimerWinner;
+	 }
 
 	mainTimer.Restart(EndOfMatchTime);
 	Game.GameOver(LeaderBoard.GetTeams());
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
+
+	scoresTimer.Stop();
+	mainTimer.Restart("MockModeTime");
 }
 function Vote() {
    stateProp.Value = VoteStateValue;	
 	NewGameVote.Start({
 		Variants: [{ MapId: 0 }],
-		Timer: 20
+		Timer: 15
 	}, MapRotation ? 3 : 0);
 }
 function RestartGame() {
@@ -228,3 +265,5 @@ function SpawnTeams() {
 	var Spawns = Teams.Spawn();
 	 Spawns.GetContext().Spawn();	
     } 
+
+scoresTimer.RestartLoop("ScoresTimerInterval");
