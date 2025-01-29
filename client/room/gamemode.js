@@ -75,11 +75,11 @@ LeaderBoard.TeamLeaderBoardValue = {
 };
 // Вес - команды, в лидерБорде:
 LeaderBoard.TeamWeightGetter.Set(function(Team) {
-	return Team.Properties.Get("Kills").Value;
+	return Team.Properties.Get("Deaths").Value;
 });
 // Вес - игрока, в лидерБорде:
 LeaderBoard.PlayersWeightGetter.Set(function(Player) {
-	return Player.Properties.Get("Deaths").Value;
+	return Player.Properties.Get("Kills").Value;
 });
 
 // Задаём, что выводить, в табе:
@@ -226,8 +226,7 @@ function RestartGame() {
  Game.RestartGame();
 }
 function SpawnTeams() {
-	var Spawns = Teams.Spawn();
-	 Spawns.GetContext().Spawn();	
-    } 
-
-scoresTimer.RestartLoop("ScoresTimerInterval");
+var Spawn = Teams.All.forEach(Spawn => {
+   Spawns.GetContext("Spawn").Spawn();
+	}
+}
