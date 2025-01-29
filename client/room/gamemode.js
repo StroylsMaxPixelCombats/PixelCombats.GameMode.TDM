@@ -232,7 +232,7 @@ function SetGameMode() {
 	}
 
 	MainTimer.Restart(GameModeTime);
-	SpawnsTeams();
+	SpawnTeams();
 }	
 function SetEndOfMatchMode() {
         StateProp.Value = EndOfMatchStateValue;
