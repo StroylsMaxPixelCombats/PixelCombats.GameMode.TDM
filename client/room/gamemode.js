@@ -1,13 +1,12 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, msg } from 'pixel_combats/room';
-
-try {
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
 	
 // Константы:
 var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
+var VoteTime = 15;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -144,7 +143,7 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		RestartGame();
+		Vote();
 		break;
 	}
 });
@@ -208,6 +207,18 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
 }
+function OnVoteResult(Value) {
+	if (Value.Result === null) return;
+	NewGame.RestartGame(Value.Result);
+}
+NewGameVote.OnResult.Add(OnVoteResult);
+
+function Vote() {
+	NewGameVote.Start({
+		Variants: [{ MapId: 0 }],
+		Timer: VoteTime
+	}, MapRotation ? 3 : 0);
+}
 function RestartGame() {
  Game.RestartGame();
 }
@@ -215,10 +226,4 @@ function SpawnTeams() {
  for (var Team of Teams) {
   Spawns.GetContext(Team).Spawn();
        }
-}
-
-} catch (e) {
-        Room.Players.All.forEach(p => {
-                msg.Show(`${e.name}: ${e.message} ${e.stack}`);
-        });
 }
