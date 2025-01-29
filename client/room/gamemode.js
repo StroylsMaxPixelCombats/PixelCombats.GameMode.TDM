@@ -6,7 +6,6 @@ var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
-var VoteTime = 15;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -130,6 +129,10 @@ Damage.OnKill.Add(function(Player, Killed) {
 		Player.Properties.Scores.Value += 100;
 	}
 });
+NewGameVote.OnResult.Add(function(Value) {
+	if (Value.Result === null) return;
+	NewGame.RestartGame(Value.Result);
+});
 
 // Переключение - игровых, режимов:
 mainTimer.OnTimer.Add(function() {
@@ -144,7 +147,7 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		Vote();
+		SetVoteTime();
 		break;
 	}
 });
@@ -208,18 +211,12 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Enable = false;
 	Spawns.GetContext().Despawn();
 }
-function OnVoteResult(Value) {
-	if (Value.Result === null) return;
-	NewGame.RestartGame(Value.Result);
-}
-NewGameVote.OnResult.Add(OnVoteResult);
-
-function Vote() {
-      stateProp.Value = VoteStateValue;
+function SetVoteTime() {
+        stateProp.Value = 'Vote';
 	NewGameVote.Start({
-		Variants: [{ MapId: 0 }],
-		Timer: VoteTime
-	}, MapRotation ? 3 : 0);
+		Variants: [{ MapId: 5 }],
+		Timer: 15
+	}, 3);
 }
 function RestartGame() {
  Game.RestartGame();
