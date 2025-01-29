@@ -24,6 +24,7 @@ var MockModeStateValue = "MockMode";
 var ScoresLeaderBoard = "Scores";
 var DeathsLeaderBoard = "Deaths";
 var KillsLeaderBoard = "Kills";
+var SpawnsLeaderBoard = "Spawns";
 
 // Постоянные - переменные:
 var MainTimer = Timers.GetContext().Get("Main");
@@ -70,7 +71,7 @@ LeaderBoard.PlayerLeaderBoardValues = [
 		ShortDisplayName: "<b><size=30><color=#be5f1b>D</color><color=#b85519>e</color><color=#b24b17>a</color><color=#ac4115>t</color><color=#a63713>h</color><color=#a02d11>s</color></size></b>"
 	},
 	{
-		Value: "Spawns",
+		Value: "SpawnsLeaderBoard",
 		DisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>",
 		ShortDisplayName: "<b><size=30><color=#be5f1b>S</color><color=#b85519>p</color><color=#b24b17>a</color><color=#ac4115>w</color><color=#a63713>n</color><color=#a02d11>s</color></size></b>"
 	},
@@ -91,7 +92,7 @@ LeaderBoard.TeamWeightGetter.Set(function(Team) {
 });
 // Вес - игрока, в лидерБорде:
 LeaderBoard.PlayersWeightGetter.Set(function(Player) {
-	return Player.Properties.Get("Kills").Value;
+	return Player.Properties.Get("KillsLeaderBoard").Value;
 });
 
 // Задаём, что выводить, в табе:
