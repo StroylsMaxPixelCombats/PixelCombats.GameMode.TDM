@@ -6,14 +6,12 @@ var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
-var MockModeTime = 20;
 
 // Константы, очков:
 var KillScores = 10;
 var WinnerScores = 20;
 var TimerScores = 30;
 var ScoresTimerInterval = 40;
-var ScoresTimerWinner = 50;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -249,7 +247,6 @@ function SetEndOfMatchMode() {
 	Spawns.GetContext().Despawn();
 
 	scoresTimer.Stop();
-	mainTimer.Restart("MockModeTime");
 }
 function Vote() {
    stateProp.Value = VoteStateValue;	
