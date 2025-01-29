@@ -6,7 +6,6 @@ var WaitingPlayersTime = 6;
 var BuildBaseTime = 31;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
-var VoteTime = 10;
 
 // Константы, имён:
 var WaitingStateValue = "Waiting";
@@ -22,7 +21,6 @@ var stateProp = Properties.GetContext().Get("State");
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 Map.Rotation = GameMode.Parameters.GetBool("MapPotation");
-Map.LoadRandomMap = GameMode.Parameters.GetBool("RandomMap");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");
 
@@ -145,7 +143,7 @@ mainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		RestartGame();
+		Vote();
 		break;
 	}
 });
@@ -155,7 +153,7 @@ function OnVoteResult(Value) {
 	if (Value.Result === null) return;
 	NewGame.RestartGame(Value.Result);
 }
-NewGameVote.OnResult.Add(OnVoteResult); 
+NewGameVote.OnResult.Add("OnVoteResult"); 
 
 // Задаём, первое игровое - состояние игры:
 SetWaitingMode();
@@ -172,6 +170,7 @@ function SetBuildMode()
 {
 	stateProp.Value = BuildModeStateValue;
 	Ui.GetContext().Hint.Value = "!Застраивайте базу - и разрушайте, базу врагов!";
+	
 	var inventory = Inventory.GetContext();
 	inventory.Main.Value = false;
 	inventory.Secondary.Value = false;
@@ -181,7 +180,6 @@ function SetBuildMode()
 
 	mainTimer.Restart(BuildBaseTime);
 	Spawns.GetContext().Enable = true;
-	Spawns.GetContext().Spawn();
 	SpawnTeams();
 }
 function SetGameMode() {
@@ -189,19 +187,19 @@ function SetGameMode() {
 	stateProp.Value = GameStateValue;
 	Ui.GetContext().Hint.Value = "!Атакуйте, врагов!";
 
-	var inventory = Inventory.GetContext();
+	 var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
-		inventory.Main.Value = false;
-		inventory.Secondary.Value = false;
-		inventory.Melee.Value = true;
-		inventory.Explosive.Value = false;
-		inventory.Build.Value = true;
-	} else {
-		inventory.Main.Value = true;
-		inventory.Secondary.Value = true;
-		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
-		inventory.Build.Value = true;
+	 inventory.Main.Value = false;
+	 inventory.Secondary.Value = false;
+	 inventory.Melee.Value = true;
+	 inventory.Explosive.Value = false;
+	 inventory.Build.Value = true;
+    } else {
+	 inventory.Main.Value = true;
+	 inventory.Secondary.Value = true;
+	 inventory.Melee.Value = true;
+	 inventory.Explosive.Value = true;
+	 inventory.Build.Value = true;
 	}
 
 	mainTimer.Restart(GameModeTime);
@@ -220,7 +218,7 @@ function Vote() {
    stateProp.Value = VoteStateValue;	
 	NewGameVote.Start({
 		Variants: [{ MapId: 0 }],
-		Timer: VoteTime;
+		Timer: 20
 	}, MapRotation ? 3 : 0);
 }
 function RestartGame() {
