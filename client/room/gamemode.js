@@ -1,11 +1,12 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGameVote, NewGame } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
 
 // Константы:
 var WaitingPlayersTime = 11;
 var BuildBaseTime = 31;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
+var VoteTime = 15;
 
 // Константы, очков/килов - с таймерам:
 var Kill_SCORES = 25;
@@ -161,6 +162,12 @@ ScoresTimer.OnTimer.Add(function() {
  Player.Properties.Scores.Value += Timer_SCORES;
       }
 });
+// Функции, голосования:
+function OnVoteResult(Value) {
+ if (Value.Result === null) return;
+NewGame.RestartGame(Value.Result);
+ }
+NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции, которая выполняется только - на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза, и появилось - 2 подписки.
 
 // Переключение - игровых, режимов:
 MainTimer.OnTimer.Add(function() {
@@ -175,7 +182,7 @@ MainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		RestartGame();
+		SetVoteStart();
 		break;
 	}
 });
@@ -243,8 +250,11 @@ function SetEndOfMatchMode() {
 	 for (var WinPlayer of LeaderBoard[0].Team.Players) 
 	 WinPlayer.Properties.ScoresLeaderBoard.Value += Winner_SCORES;
 }
-function RestartGame() {
- Game.RestartGame();
+function SetVoteStart() {
+	NewGameVote.Start({
+		Variants: [{ MapId: 0 }],
+		Timer: VoteTime
+	}, MapRotation ? 3 : 0);
 }
 function SpawnTeams() {
   Spawns.GetContext().Spawn();
