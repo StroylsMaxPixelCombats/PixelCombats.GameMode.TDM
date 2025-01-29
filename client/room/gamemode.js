@@ -20,6 +20,7 @@ var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 var MockModeStateValue = "MockMode";
+var VoteStateValue = "VoteStart";
 
 // Постоянные - переменные:
 var MainTimer = Timers.GetContext().Get("Main");
@@ -182,7 +183,7 @@ MainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	case EndOfMatchStateValue:
-		SetVoteStart();
+		VoteStart();
 		break;
 	}
 });
@@ -251,8 +252,9 @@ function SetEndOfMatchMode() {
 	 WinPlayer.Properties.ScoresLeaderBoard.Value += Winner_SCORES;
 }
 function SetVoteStart() {
+	StateProp.Value = VoteStateValue;
 	NewGameVote.Start({
-		Variants: [{ MapId: 0 }],
+		Variants: [{ MapId: 4 }],
 		Timer: VoteTime
 	}, MapRotation ? 3 : 0);
 }
