@@ -20,7 +20,6 @@ var BuildModeStateValue = "BuildMode";
 var GameStateValue = "Game";
 var EndOfMatchStateValue = "EndOfMatch";
 var MockModeStateValue = "MockMode";
-var VoteStateValue = "VoteStart";
 
 // Постоянные - переменные:
 var MainTimer = Timers.GetContext().Get("Main");
@@ -163,14 +162,6 @@ ScoresTimer.OnTimer.Add(function() {
  Player.Properties.Scores.Value += Timer_SCORES;
       }
 });
-// Функции, голосования:
-if (GameMode.Parameters.GetBool("MapPotation")) {
- function OnVoteResult(Value) {
- if (Value.Result === null) return;
-NewGame.RestartGame(Value.Result);
- }
-NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции, которая выполняется только - на сервере, чтобы не зависало, если не отработает, также чтобы не давало баг, если вызван метод 2 раза, и появилось - 2 подписки.
-}
 
 // Переключение - игровых, режимов:
 MainTimer.OnTimer.Add(function() {
@@ -184,13 +175,8 @@ MainTimer.OnTimer.Add(function() {
 	case GameStateValue:
 		SetEndOfMatchMode();
 		break;
-	if (GameMode.Parameters.GetBool("MapPotation")) {		
 	 case EndOfMatchStateValue:
-		VoteStart();
-		break;
-	     }
-	 case EndOfMatchStateValue:
-	        RestartGame();
+	        StartVoteMode();
 	        break;
 	}
 });
@@ -258,20 +244,25 @@ function SetEndOfMatchMode() {
 	 for (var WinPlayer of LeaderBoard[0].Team.Players) 
 	 WinPlayer.Properties.ScoresLeaderBoard.Value += Winner_SCORES;
 }
-if (GameMode.Parameters.GetBool("MapPotation")) {
- function SetVoteStart() {
-	StateProp.Value = VoteStateValue;
+
+function OnVoteResult(Value) {
+	if (Value.Result === null) return;
+	NewGame.RestartGame(Value.Result);
+}
+NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции, которая выполняется - только на сервере, чтобы не зависало, если не отработает, также чтобы не - давало баг, если вызван метод - 2 раза и появилось, 2 подписки.
+
+ function StartVoteMode() {
 	NewGameVote.Start({
-		Variants: [{ MapId: 4 }],
+		Variants: [{ MapId: 2 }],
 		Timer: VoteTime
-	}, 3);
+	}, MapPotation ? 3 : 0 );
     }
 }
-function RestartGame() {
- Game.RestartGame();
-}
+
 function SpawnTeams() {
-  Spawns.GetContext().Spawn();
-}
+ var Err = Teams.All;
+Err.forEach((Team) => {
+    Team.Spawns.Spawn();
+});
 
 ScoresTimer.RestartLoop(TimerInterval_SCORES);
