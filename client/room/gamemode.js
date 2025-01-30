@@ -260,9 +260,7 @@ NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции,
 }
 
 function SpawnTeams() {
- var Err = Teams.All;
-Err.forEach((Team) => {
-    Team.Spawns.Spawn();
+ Spawns.GetContext().Spawn();
 });
 
 ScoresTimer.RestartLoop(TimerInterval_SCORES);
