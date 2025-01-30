@@ -6,7 +6,6 @@ var WaitingPlayersTime = 11;
 var BuildBaseTime = 1;
 var GameModeTime = 2;
 var EndOfMatchTime = 11;
-var VoteTime = 15;
 
 // Константы, очков/килов - с таймерам:
 var Kill_SCORES = 25;
@@ -253,8 +252,8 @@ NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции,
 
  function StartVoteMode() {
 	NewGameVote.Start({
-		Variants: [{ MapId: 2 }],
-		Timer: VoteTime
+		Variants: [{ MapId: 0 }],
+		Timer: 15
 	}, MapPotation ? 3 : 0 );
     }
 }
