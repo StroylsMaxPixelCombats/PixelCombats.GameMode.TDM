@@ -1,6 +1,8 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote, msg } from 'pixel_combats/room';
 
+try {
+	
 // Константы:
 var WaitingPlayersTime = 11;
 var BuildBaseTime = 1;
@@ -175,7 +177,7 @@ MainTimer.OnTimer.Add(function() {
 		SetEndOfMatchMode();
 		break;
 	 case EndOfMatchStateValue:
-	        StartVoteMode();
+	        StartVote();
 	        break;
 	}
 });
@@ -244,13 +246,13 @@ function SetEndOfMatchMode() {
 	 WinPlayer.Properties.ScoresLeaderBoard.Value += Winner_SCORES;
 }
 
-function OnVoteResult(Value) {
-	if (Value.Result === null) return;
-	NewGame.RestartGame(Value.Result);
+function OnVoteResult(v) {
+	if (v.Result === null) return;
+	NewGame.RestartGame(v.Result);
 }
 NewGameVote.OnResult.Add(OnVoteResult); // Вынесено из функции, которая выполняется - только на сервере, чтобы не зависало, если не отработает, также чтобы не - давало баг, если вызван метод - 2 раза и появилось, 2 подписки.
 
- function StartVoteMode() {
+ function StartVote() {
 	NewGameVote.Start({
 		Variants: [{ MapId: 0 }],
 		Timer: 15
@@ -263,3 +265,9 @@ function SpawnTeams() {
 });
 
 ScoresTimer.RestartLoop(TimerInterval_SCORES);
+
+} catch (e) {
+        Players.All.forEach(Player => {
+                msg.Show(`${e.name}: ${e.message} ${e.stack}`);
+        });
+}
