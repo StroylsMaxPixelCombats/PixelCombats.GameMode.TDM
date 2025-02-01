@@ -1,5 +1,5 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote, msg } from 'pixel_combats/room';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, msg } from 'pixel_combats/room';
 
 try {
 	
@@ -251,7 +251,7 @@ function RestartGame() {
 	
 function SpawnTeams() {
  Spawns.GetContext().Spawn();
-});
+}
 
 ScoresTimer.RestartLoop(TimerInterval_SCORES);
 
