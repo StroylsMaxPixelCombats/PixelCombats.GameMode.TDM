@@ -1,6 +1,8 @@
 import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, NewGame, NewGameVote, msg } from 'pixel_combats/room';
 
+try {
+	
 // Константы:
 var WaitingPlayersTime = 11;
 var BuildBaseTime = 1;
@@ -252,3 +254,9 @@ function SpawnTeams() {
 });
 
 ScoresTimer.RestartLoop(TimerInterval_SCORES);
+
+} catch (e) {
+        Players.All.forEach(msg => {
+                msg.Show(`${e.name}: ${e.message} ${e.stack}`);
+        });
+}
