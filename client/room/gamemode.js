@@ -5,8 +5,8 @@ try {
 	
 // Константы:
 var WaitingPlayersTime = 11;
-var BuildBaseTime = 1;
-var GameModeTime = 2;
+var BuildBaseTime = 31;
+var GameModeTime = 601;
 var EndOfMatchTime = 11;
 
 // Константы, очков/килов - с таймерам:
@@ -246,6 +246,9 @@ function SetEndOfMatchMode() {
 	 WinPlayer.Properties.ScoresLeaderBoard.Value += Winner_SCORES;
 }
 function RestartGame() {
+if (GameMode.Parameters.GetBool('LoadRandomMap')) {
+ Map.LoadRandomMap();
+}
  Game.RestartGame();
 }
 	
