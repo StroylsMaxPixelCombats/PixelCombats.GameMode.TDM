@@ -5,7 +5,7 @@ try {
 	
 // Константы:
 var WaitingPlayersTime = 11;
-var BuildBaseTime = 31;
+var BuildBaseTime = 41;
 var GameModeTime = 601;
 var EndOfMatchTime = 11;
 
