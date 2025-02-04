@@ -24,7 +24,9 @@
       },
       {
         "Name": "LoadRandomMap",
-        "DisplayName": "Вддвыыдд"
+        "DisplayName": "ЗАГРУЗКА СМЕНОЙ КАРТ"
+      },
+      {
         "Name": "OnlyKnives",
         "DisplayName": "БОЙ НА НОЖАХ"
       },
