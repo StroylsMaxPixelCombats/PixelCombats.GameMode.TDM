@@ -106,9 +106,9 @@ Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 
 // Делаем игроков, неуязвимыми - после спавна:
 var ImmortalityTimerName = "Immortality";
-Spawns.GetContext().OnSpawn.Add(function(Player) {
-	Player.Properties.Immortality.Value = true;
-	Timer = Player.Timers.Get("ImmortalityTimerName").Restart(6);
+Spawns.GetContext().OnSpawn.Add(function(Player){
+	Player.Properties.Immortality.Value.= true;
+	Timer = Player.Timers.Get(ImmortalityTimerName).Restart(5);
 });
 Timers.OnPlayerTimer.Add(function(Timer){
 	if (Timer.Id != ImmortalityTimerName) return;
