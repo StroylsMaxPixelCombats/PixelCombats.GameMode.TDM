@@ -18,11 +18,6 @@
   "Parameters": {
     "Bool": [
       {
-        "Name": "MapPotation",
-        "DisplayName": "СМЕНА КАРТ",
-        "Default": true
-      },
-      {
         "Name": "LoadRandomMap",
         "DisplayName": "ЗАГРУЗКА СМЕНОЙ КАРТ"
       },
