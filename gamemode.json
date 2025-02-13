@@ -19,7 +19,7 @@
     "Bool": [
       {
         "Name": "LoadRandomMap",
-        "DisplayName": "ЗАГРУЗКА СМЕНОЙ КАРТ"
+        "DisplayName": "СМЕНА КАРТ"
       },
       {
         "Name": "OnlyKnives",
