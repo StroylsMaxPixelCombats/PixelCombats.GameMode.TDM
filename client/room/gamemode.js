@@ -4,28 +4,28 @@ import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, B
 try {
 	
 // Константы:
-var WaitingPlayersTime = 11;
-var BuildBaseTime = 41;
-var GameModeTime = 601;
-var EndOfMatchTime = 11;
+const WaitingPlayersTime = 11;
+const BuildBaseTime = 41;
+const GameModeTime = 601;
+const EndOfMatchTime = 11;
 
 // Константы, очков/килов - с таймерам:
-var Kill_SCORES = 25;
-var Winner_SCORES = 55;
-var Timer_SCORES = 5;
-var TimerInterval_SCORES = 15;
+const Kill_SCORES = 25;
+const Winner_SCORES = 55;
+const Timer_SCORES = 5;
+const TimerInterval_SCORES = 15;
 
 // Константы, имён:
-var WaitingStateValue = "Waiting";
-var BuildModeStateValue = "BuildMode";
-var GameStateValue = "Game";
-var EndOfMatchStateValue = "EndOfMatch";
-var MockModeStateValue = "MockMode";
+const WaitingStateValue = "Waiting";
+const BuildModeStateValue = "BuildMode";
+const GameStateValue = "Game";
+const EndOfMatchStateValue = "EndOfMatch";
+const MockModeStateValue = "MockMode";
 
 // Постоянные - переменные:
-var MainTimer = Timers.GetContext().Get("Main");
-var ScoresTimer = Timers.GetContext().Get("Scores");
-var StateProp = Properties.GetContext().Get("State");
+let MainTimer = Timers.GetContext().Get("Main");
+let ScoresTimer = Timers.GetContext().Get("Scores");
+let StateProp = Properties.GetContext().Get("State");
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
@@ -43,15 +43,15 @@ Ui.GetContext().MainTimerId.Value = MainTimer.Id;
 // Стандартные, команды:
 Teams.Add("Blue", "<b><size=30><color=#0d177c>ß</color><color=#03088c>l</color><color=#0607b0>ᴜ</color><color=#1621ae>E</color></size></b>", new Color(0, 0, 1, 0));
 Teams.Add("Red", "<b><size=30><color=#962605>尺</color><color=#9a040c>ᴇ</color><color=#b8110b>D</color></size></b>", new Color(1, 0, 0, 0));
-var BlueTeam = Teams.Get("Blue");
-var RedTeam = Teams.Get("Red");
+let BlueTeam = Teams.Get("Blue");
+let RedTeam = Teams.Get("Red");
 BlueTeam.Spawns.SpawnPointsGroups.Add(1);
 RedTeam.Spawns.SpawnPointsGroups.Add(2);
 BlueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 RedTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
 
 // Максимальные - смерти, команд:
-var MaxDeaths = Players.MaxCount * 5;
+const MaxDeaths = Players.MaxCount * 5;
 Teams.Get("Red").Properties.Get("Deaths").Value = MaxDeaths;
 Teams.Get("Blue").Properties.Get("Deaths").Value = MaxDeaths;
 // Стандартные - лидерБорды:
@@ -105,7 +105,7 @@ Teams.OnRequestJoinTeam.Add(function(Player,Team){Team.Add(Player);});
 Teams.OnPlayerChangeTeam.Add(function(Player){ Player.Spawns.Spawn()});
 
 // Делаем игроков, неуязвимыми - после спавна:
-var ImmortalityTimerName = "Immortality";
+let ImmortalityTimerName = "Immortality";
 Spawns.GetContext().OnSpawn.Add(function(Player){
 	Player.Properties.Immortality.Value = true;
 	Timer = Player.Timers.Get(ImmortalityTimerName).Restart(5);
