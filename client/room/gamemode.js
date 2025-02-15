@@ -5,7 +5,7 @@ try {
 	
 // Константы:
 const WaitingPlayersTime = 11;
-const BuildBaseTime = 61;
+const BuildBaseTime = 41;
 const GameModeTime = 601;
 const EndOfMatchTime = 11;
 	
