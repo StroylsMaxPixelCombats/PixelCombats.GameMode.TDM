@@ -9,6 +9,19 @@ const BuildBaseTime = 41;
 const GameModeTime = 601;
 const EndOfMatchTime = 11;
 
+// Константы, для - захвата:
+const DefTimerTickInderval = 1;
+const DefPoints = GameModeTime * 0.2;
+const DefPointsMaxCount = 30;
+const SavePointsCount = 10;
+const RepairPointsBySecond = 0.5;
+const CapturePoints = 10;
+const MaxCapturePoints = 15;
+const RedCaptureW = 1;
+const BlueCaptureW = 2;
+const CaptureRestoreW = 1;
+const MaxSpawnsByArea = 25;
+
 // Константы, очков/килов - с таймерам:
 const Kill_SCORES = 25;
 const Winner_SCORES = 55;
@@ -21,11 +34,20 @@ const BuildModeStateValue = "BuildMode";
 const GameStateValue = "Game";
 const EndOfMatchStateValue = "EndOfMatch";
 const MockModeStateValue = "MockMode";
+// Константы имён, для - захвата:
+const DefAreaTag = "Def";
+const CaptureAreaTag = "Capture";
 
 // Постоянные - переменные:
 let MainTimer = Timers.GetContext().Get("Main");
 let ScoresTimer = Timers.GetContext().Get("Scores");
 let StateProp = Properties.GetContext().Get("State");
+// Постоянные, переменные - захвата:
+let DefTickTimer = Timers.GetContext().Get("DefTimer");
+let CaptureTriggers = [];
+let CaptureViews = [];
+let CaptureProperties = [];
+let CapturedAreaIndexProp = Properties.GetContext().Get("RedCaptiredIndex");
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
