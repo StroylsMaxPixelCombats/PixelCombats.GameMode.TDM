@@ -57,14 +57,6 @@ Map.OnLoad.Add(function() {
 	InitializeDefAreas();
 });
 
-// Отмечаем, зону красными - захвата:
-function CaptureArea(Index) {
- if (Index < 0 || Index >= CaptureAreas.length) return;
-CaptureViews[Index].Color = RedColor;
- if (Index < CaptureProperties.length - 1) 
-	CaptureViews[Index + 1].Enable = true;
-}
-
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");
