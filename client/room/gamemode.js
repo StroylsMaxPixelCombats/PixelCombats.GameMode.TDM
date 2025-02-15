@@ -2,9 +2,6 @@ import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, msg } from 'pixel_combats/room';
 
 try {
-
-// Цвета, для - захвата:
-const RedColor = new Color(1, 0, 0, 0);
 	
 // Константы:
 const WaitingPlayersTime = 11;
