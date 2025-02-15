@@ -2,10 +2,13 @@ import { DisplayValueHeader, Color } from 'pixel_combats/basic';
 import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, msg } from 'pixel_combats/room';
 
 try {
+
+// Цвета, для - захвата:
+const RedColor = new Color(1, 0, 0, 0);
 	
 // Константы:
 const WaitingPlayersTime = 11;
-const BuildBaseTime = 41;
+const BuildBaseTime = 61;
 const GameModeTime = 601;
 const EndOfMatchTime = 11;
 
@@ -48,6 +51,19 @@ let CaptureTriggers = [];
 let CaptureViews = [];
 let CaptureProperties = [];
 let CapturedAreaIndexProp = Properties.GetContext().Get("RedCaptiredIndex");
+
+// Задаём, всем зона - цвет, для захвата: 
+Map.OnLoad.Add(function() {
+	InitializeDefAreas();
+});
+
+// Отмечаем, зону красными - захвата:
+function CaptureArea(Index) {
+ if (Index < 0 || Index >= CaptureAreas.length) return;
+CaptureViews[Index].Color = RedColor;
+ if (Index < CaptureProperties.length - 1) 
+	CaptureViews[Index + 1].Enable = true;
+}
 
 // Применяем параметры, создания - комнаты:
 Damage.FriendlyFire = GameMode.Parameters.GetBool("FriendlyFire");
